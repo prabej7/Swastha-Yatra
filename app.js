@@ -54,7 +54,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get('/',async(req,res)=>{
-    res.render('index');
+    res.render('home');
 });
 
 app.post('/',async(req,res)=>{
@@ -65,18 +65,45 @@ app.post('/',async(req,res)=>{
         }else{
             passport.authenticate('local')(req,res,async()=>{
                 await User.updateOne({_id:req.user._id},{$set:{type:type}});
-                res.send('Account');
-            })
+                res.redirect('/account');
+            });
         }
-    })
+    });
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res) => {
+    const existingUser = new User({
+        username: req.body.username,
+        password: req.body.password,
+    });
+    req.login(existingUser, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            passport.authenticate('local')(req, res, () => {
+                res.redirect('/account');
+            });
+        }
+    });
+});
+
+
+
 app.get('/account',(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render('account');
+    }else{
+        res.redirect('/login');
+    }
+});
 
-})
 
-app.get('/register',async(req,res)=>{
-    res.render('index');
+app.get('/account/doctors',async(req,res)=>{
+    res.render('AddDoctor');
 })
 
 server.listen(3000,()=>{

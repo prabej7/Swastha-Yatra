@@ -1,0 +1,10 @@
+<%- include('partials/header') -%>
+
+<form action="/addDocs" method="post" enctype="multipart/form-data" >
+    <input type="file" name="profile" />
+    <input type="text" name="name" placeholder="Doctor's Name" />
+    <input type="text" name="type" placeholder="Specialization" />
+    <button type="submit">Add</button>
+</form>
+
+<%- include('partials/footer') -%>
