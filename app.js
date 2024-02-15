@@ -43,7 +43,8 @@ mongoose.connect('mongodb://localhost:27017/UserDB');
 const doctorSchema = mongoose.Schema({
     name: String,
     type: String,
-    attend : String
+    attend : String,
+    img: String
 });
 
 const Doctor = mongoose.model('doctor',doctorSchema);
@@ -53,6 +54,7 @@ const userSchema = mongoose.Schema({
     password: String,
     type: String,
     doctors: [doctorSchema],
+    img: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -74,7 +76,7 @@ app.post('/register', async (req, res) => {
             console.log(err);
         } else {
             passport.authenticate('local')(req, res, async () => {
-                await User.updateOne({ _id: req.user._id }, { $set: { type: type } });
+                await User.updateOne({ _id: req.user._id }, { $set: { type: type,img:'img.png' } });
                 res.redirect('/account');
             });
         }
@@ -162,11 +164,20 @@ app.get('/myaccount',async(req,res)=>{
     }else{
         res.redirect('/login');
     }
-    
 });
 
 app.post('/updatePofile',uploads.single('profile'),async(req,res)=>{
-    await User.updateOne({})
+    let profilePic = req.user.img;
+    const data = await User.updateOne({_id:req.user._id},{$set:{img:req.file.filename}});
+    if(profilePic!=='img.png'){
+        fs.unlink('./public/upload' + profilePic,(err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                console.log('File Deleted Successfully!');
+            }
+        })
+    }
 });
 
 server.listen(3000, () => {
