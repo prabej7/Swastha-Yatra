@@ -119,7 +119,7 @@ app.post('/login', (req, res) => {
                 if(req.user.type==='patient'){
                     res.redirect('/patientsAccount');
                 }else{
-                    res.redirect('/account');
+                    res.redirect('/myaccount');
                 }
                 
             });
@@ -195,7 +195,7 @@ app.get('/hospitals', async (req, res) => {
 
 app.get('/myaccount', async (req, res) => {
     if (req.isAuthenticated()) {
-        console.log(req.user);
+        res.render('myaccount',{data:req.user});
     } else {
         res.redirect('/login');
     }

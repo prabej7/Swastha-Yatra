@@ -1,23 +1,74 @@
 <%- include('partials/header') -%>
-    <%if(data.type!=='patient'){%>
-         <%if(data.type==='hospital' ){%>
-        <a href="/account/doctors">Doctors</a>
-        <%}%>
-            <a href="/account/patients">Patients</a>
-            <a href="/logout">Logout</a>
-            <%}else{%>
-                <h2>Your Appointments</h2>
-                <%doctors.forEach((element)=>{%>
-                    <img src="/uploads/<%= element.img %>" />
-                    <p><%= element.username %></p>
-                    <form action="/chat" method="post">
-                        <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
-                    </form>
-                <%})%>
-                <div class="doctors">
-                    
-                </div>
-            <%}%>
+    <div class="hero-section">
+        <div class="side-bar">
+            <%if(data.type!=='patient'){%>
+                <%if(data.type==='hospital' ){%>
+                    <div class="items">
+                        <a href="/account">
+                            <div class="smenus">
+                                Dashboard
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="items">
+                        <a href="/account/doctors">
+                            <div class="smenus">
+                                Doctors
+                            </div>
+                        </a>
+                    </div>
+                    <%}%>
+                        <div class="items">
+                            <a href="/account/patients">
+                                <div class="smenus">
+                                    Patients
+                                </div>
+                            </a>
+                        </div>
+                        <div class="items">
+                            <a href="/logout">
+                                <div class="smenus">
+                                    Logout
+                                </div>
+                            </a>
+                        </div>
+                        <%}else{%>
+                            <h2>Your Appointments</h2>
+                            <%doctors.forEach((element)=>{%>
+                                <img src="/uploads/<%= element.img %>" />
+                                <p>
+                                    <%= element.username %>
+                                </p>
+                                <form action="/chat" method="post">
+                                    <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+                                </form>
+                                <%})%>
+                                    <div class="doctors">
+
+                                    </div>
+                                    <%}%>
+
+        </div>
+        <div class="dashboard-main">
+            <img src="/uploads/<%= pic %>" alt="Profile Picture" />
+            <form action="/updatePofile" method="post" enctype="multipart/form-data">
+                <input type="file" name="profile" />
+                <button type="submit">Upload</button>
+            </form>
+
+            <form action="/updatePay" method="post">
+                <input type="text" name="eSewaNo" placeholder="eSewa Number" />
+                <input type="text" name="eSewa" placeholder="Registerd Name" />
+                <button type="submit">Update</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
 
 
-                <%- include('partials/footer') -%>
+
+
+
+    <%- include('partials/footer') -%>

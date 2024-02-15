@@ -5,14 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./public/css/main.css">
 </head>
 
@@ -28,33 +22,46 @@
             <a href="">My Account</a>
         </div>
     </div>
-    <div class="hero-section register">
-        <div class="form-main">
-            <div class="head">
-                <h2>Register</h2>
-            </div>
-            <form action="/register" method="post" >
-                <div class="radios">
-                    <input type="radio" name="type" value="hospital" />
-                <label for="type">Hospital</label>
-                <input type="radio" name="type" value="doctor" />
-                <label for="type">Doctor</label>
-                <input type="radio" name="type" value="patient" />
-                <label for="type">Patient</label>
+    <div class="hero-section dash">
+        <div class="side-bar">
+            <div class="items">
+                <div class="smenus">
+                    Dashboard
                 </div>
-                
-                <input type="text" name="username" placeholder="User Name" class="input" />
-                <input type="password" name="password" placeholder="Password" class="input" />
-                <button type="submit" class="btn">Register</button>
-            </form>
-            <div class="ask">
-                <p>Haven't register yet ? <a href="/login" >Login</a></p>
             </div>
+            <div class="items">
+                <div class="icons">
+                </div>
+                <div class="smenus">
+                    Doctors
+                </div>
+            </div>
+            <div class="items">
+                <div class="icons">
+                </div>
+                <div class="smenus">
+                    Patients
+                </div>
+            </div>
+            <div class="items">
+                <div class="icons">
+                </div>
+                <div class="smenus">
+                    Logout
+                </div>
+            </div>
+
+
+
         </div>
-        <div class="img-section">
-            <img src="./public/img/login.jpg" />
+        <div class="dashboard-main">
+            
         </div>
     </div>
+
+
+    </div>
+
 </body>
 
 </html>

@@ -1,5 +1,13 @@
 <%- include('partials/header') -%>
-<img src="/uploads/<%= pic %>" alt="Profile Picture" />
+<div class="hero-section">
+    <div class="form-main">
+        <div class="head">
+            <h2>My Account</h2>
+        </div>
+            <div class="profile-pic">
+                 <img src="/uploads/<%= data.img %>" alt="Profile Picture" />  
+            </div>
+
 <form action="/updatePofile" method="post" enctype="multipart/form-data">
     <input type="file" name="profile" />
     <button type="submit">Upload</button>
@@ -9,6 +17,12 @@
     <input type="text" name="eSewaNo" placeholder="eSewa Number" />
     <input type="text" name="eSewa" placeholder="Registerd Name" />
     <button type="submit">Update</button>
-</form>
+</form> 
+
+</div>
+</div>
+
+
+
 
 <%- include('partials/footer') -%>
