@@ -214,10 +214,16 @@ app.post('/preBilling',(req,res)=>{
 });
 
 app.get('/billing',async(req,res)=>{
+    let isAuth;
     const data = await User.findByUsername(hospitalName);
     let eSewaUrl = `"eSewa_id:":"${data.eSewaNo}","name":"${data.eSewa}"`;
+    if(req.isAuthenticated() &&req.user.type==='patient'){
+        isAuth = 1;
+    }else{
+        isAuth = 0;
+    }
     qrCode.toDataURL(eSewaUrl,(err,url)=>{
-        res.render('billing',{qr:url});
+        res.render('billing',{qr:url,auth:isAuth});
     });
 });
 let patId;
