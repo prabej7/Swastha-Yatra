@@ -120,9 +120,10 @@ app.post('/login', (req, res) => {
 
 app.get('/account', async (req, res) => {
     if (req.isAuthenticated()) {
-        if (!req.user.hospital) {
+        if (req.user.type==='patient' && !req.user.hospital) {
             const data = await User.findById(req.user.id);
-            console.log(data);
+            console.log(data.doctors);
+            res.render('account',{doctors:data.doctors,data:req.user});
         } else {
             res.render('account', { data: req.user, doctors: req.user.doctors });
         }
