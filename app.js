@@ -39,6 +39,16 @@ app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/UserDB');
 
+const patientSchema  = mongoose.Schema({
+    name: String,
+    phone: String,
+    age: String,
+    doctor: String,
+    hospital: String,
+    receipt: String
+});
+
+const Patinet = mongoose.model('patient',patientSchema);
 
 const doctorSchema = mongoose.Schema({
     name: String,
@@ -54,6 +64,7 @@ const userSchema = mongoose.Schema({
     password: String,
     type: String,
     doctors: [doctorSchema],
+    patients :[patientSchema],
     img: String,
     eSewa : String,
     eSewaNo : String
@@ -210,8 +221,20 @@ app.get('/billing',async(req,res)=>{
     });
 });
 
-app.post('/billing',(req,res)=>{
-    console.log()
+app.post('/billing',uploads.single('receipt'),async(req,res)=>{
+    const {name,phone,age} = req.body;
+    const newPatients = new Patinet({
+        name: req.body.name,
+        phone: req.body.phone,
+        age:req.body.age,
+        receipt: req.file.file,
+        doctor: doctorName,
+        hospital: hospitalName
+    });
+    const saved = await newPatients.save();
+    const hospital = await User.findByUsername(hospitalName);
+    hospital.doctors.push(saved);
+    hospital.save();
 })
 
 server.listen(3000, () => {
