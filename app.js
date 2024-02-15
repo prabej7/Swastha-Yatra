@@ -44,7 +44,7 @@ const doctorSchema = mongoose.Schema({
     name: String,
     type: String,
     attend : String,
-    img: String
+    img: String,
 });
 
 const Doctor = mongoose.model('doctor',doctorSchema);
@@ -129,7 +129,8 @@ app.post('/addDocs',uploads.single('profile'),async(req,res)=>{
     const newDoctor =  new Doctor({
         name: req.body.name,
         type: req.body.type,
-        attend: 'Offline'
+        attend: 'Offline',
+        img: req.file.filename
     });
     const saved = await newDoctor.save();
     await req.user.doctors.push(saved);
@@ -188,6 +189,22 @@ app.post('/updatePay',async(req,res)=>{
     console.log(data);
     res.redirect('/myaccount');
 });
+let hospitalName;
+let doctorName;
+app.get('/hospitals/:text',async(req,res)=>{
+    hospitalName = req.params.text;
+    const hospital = await User.findByUsername(req.params.text);
+    res.render('doctors',{data:hospital.doctors});
+});
+
+app.post('/preBilling',(req,res)=>{
+    doctorName = req.body.doctor;
+    console.log(doctorName);
+});
+
+app.get('/billing',(req,req)=>{
+    res.render('')
+})
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');

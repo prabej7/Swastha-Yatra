@@ -1,0 +1,13 @@
+<%- include('partials/header') -%>
+
+<%data.forEach((element)=>{%>
+    <div class="doctor">
+        <img src="/uploads/<%= element.img %>" />
+        <p><%= element.name %></p>
+        <form action="/preBilling" method="post">
+            <button type="submit" value="<%= element.name %>" name="doctor">Appoint</button>
+        </form>
+    </div>
+    <%})%>
+
+<%- include('partials/footer') -%>
