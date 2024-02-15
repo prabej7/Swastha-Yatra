@@ -54,7 +54,9 @@ const userSchema = mongoose.Schema({
     password: String,
     type: String,
     doctors: [doctorSchema],
-    img: String
+    img: String,
+    eSewa : String,
+    eSewaNo : String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -160,7 +162,7 @@ app.get('/hospitals',async(req,res)=>{
 
 app.get('/myaccount',async(req,res)=>{
     if(req.isAuthenticated()){
-        res.render('myaccount');
+        res.render('myaccount',{pic:req.user.img});
     }else{
         res.redirect('/login');
     }
@@ -170,15 +172,21 @@ app.post('/updatePofile',uploads.single('profile'),async(req,res)=>{
     let profilePic = req.user.img;
     const data = await User.updateOne({_id:req.user._id},{$set:{img:req.file.filename}});
     if(profilePic!=='img.png'){
-        fs.unlink('./public/upload' + profilePic,(err)=>{
+        fs.unlink('./public/uploads/' + profilePic,(err)=>{
             if(err){
                 console.log(err);
             }else{
                 console.log('File Deleted Successfully!');
             }
-        })
+        });
     }
+    res.redirect('/myaccount');
 });
+
+app.post('/updatePay',async(req,res)=>{
+    await User.updateMany({_id:req.body._id},{$set:{eSewa:req.body.eSewa,eSewaNo:req.body.eSewaNo}});
+    res.redirect('/myaccount');
+})
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');

@@ -1,5 +1,5 @@
 <%- include('partials/header') -%>
-
+<img src="/uploads/<%= pic %>" alt="Profile Picture" />
 <form action="/updatePofile" method="post" enctype="multipart/form-data">
     <input type="file" name="profile" />
     <button type="submit">Upload</button>
