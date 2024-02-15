@@ -236,12 +236,18 @@ app.post('/billing',uploads.single('receipt'),async(req,res)=>{
     const hospital = await User.findByUsername(hospitalName);
     hospital.patients.push(saved);
     hospital.save();
+    res.redirect('/qr');
 });
 
 app.get('/qr',(req,res)=>{
-    qr.toDataURL('localhost:3000/patinets/'+patId,(err,url)=>{
+    qrCode.toDataURL('localhost:3000/patients/'+patId,(err,url)=>{
         res.render('qr',{qr:url});
-    })
+    });
+});
+
+app.get('/patients/:text',async(req,res)=>{
+    const patient = await Patinet.findById(req.params.text);
+    console.log(patient);
 });
 
 
