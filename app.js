@@ -52,7 +52,7 @@ const patientSchema = mongoose.Schema({
 const Patinet = mongoose.model('patient', patientSchema);
 
 const doctorSchema = mongoose.Schema({
-    name: String,
+    username: String,
     type: String,
     attend: String,
     img: String,
@@ -122,8 +122,14 @@ app.get('/account', async (req, res) => {
     if (req.isAuthenticated()) {
         if (req.user.type==='patient' && !req.user.hospital) {
             const data = await User.findById(req.user.id);
-            console.log(data.doctors);
-            res.render('account',{doctors:data.doctors,data:req.user});
+            let docs = data.doctors;
+            let newArr = [];
+            docs.forEach(async(element) => {
+                const d = await User.findById(element._id);
+                await newArr.push(d);
+                await res.render('account',{doctors:newArr,data:req.user});
+            });
+            
         } else {
             res.render('account', { data: req.user, doctors: req.user.doctors });
         }

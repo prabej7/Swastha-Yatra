@@ -9,7 +9,7 @@
                 <h2>Your Appointments</h2>
                 <%doctors.forEach((element)=>{%>
                     <img src="/uploads/<%= element.img %>" />
-                    <p><%= element.name %></p>
+                    <p><%= element.username %></p>
                     <form action="/chat" method="post">
                         <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
                     </form>
