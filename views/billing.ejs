@@ -1,10 +1,10 @@
 <%- include('partials/header') -%>
 
 <form action="/billing" method="post" enctype="multipart/form-data">
-    <input type="radio" name="type" value="offline" />
+    <input type="radio" name="type" value="Offline" />
     <label for="type">Offline</label>
     <%if(auth===1){%>
-            <input type="radio" name="type" value="online"  />
+            <input type="radio" name="type" value="Online"  />
                 <label for="type">Online</label>
         <%}else{%>
             <input type="radio" name="type" value="online" disabled="true" />

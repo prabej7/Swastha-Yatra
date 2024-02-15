@@ -1,0 +1,8 @@
+<%- include('partials/header') -%>
+
+<%data.forEach((element)=>{%>
+    <img src="/uploads/<%= element.img %>" />
+    <p><%= element.username %></p>
+<%});%>
+
+<%- include('partials/footer') -%>

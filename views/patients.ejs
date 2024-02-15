@@ -22,10 +22,16 @@
         </ul>
         <ul>
                 <%data.forEach((element)=>{%>
-                        <form action="/chat" method="post">
+                        <li>
+                        <%if(element.type==='Online'){%>
+                                <form action="/chat" method="post">
                                 <button type="submit" value="<%= username %>" name="username">Message</button>
                         </form>
+                                <%}%>
+                        </li>
+                        
                         <%})%>
+                
                 </ul>
         <ul>
             <%data.forEach((element)=>{%>

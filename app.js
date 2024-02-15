@@ -45,7 +45,8 @@ const patientSchema  = mongoose.Schema({
     age: String,
     doctor: String,
     hospital: String,
-    receipt: String
+    receipt: String,
+    type:String
 });
 
 const Patinet = mongoose.model('patient',patientSchema);
@@ -202,6 +203,12 @@ app.post('/updatePay',async(req,res)=>{
 });
 let hospitalName;
 let doctorName;
+
+app.get('/doctors',async(req,res)=>{
+    const doctors = await User.find({type:'doctor'});
+    res.render('iDoctors',{data:doctors});
+});
+
 app.get('/hospitals/:text',async(req,res)=>{
     hospitalName = req.params.text;
     const hospital = await User.findByUsername(req.params.text);
@@ -229,19 +236,38 @@ app.get('/billing',async(req,res)=>{
 let patId;
 app.post('/billing',uploads.single('receipt'),async(req,res)=>{
     const {name,phone,age} = req.body;
-    const newPatients = new Patinet({
+    if(req.body.type==='Offline'){
+        const newPatients = new Patinet({
         name: req.body.name,
         phone: req.body.phone,
         age:req.body.age,
         receipt: req.file.filename,
         doctor: doctorName,
-        hospital: hospitalName
+        hospital: hospitalName,
+        type: 'Offline'
     });
     const saved = await newPatients.save();
     patId=saved._id;
     const hospital = await User.findByUsername(hospitalName);
     hospital.patients.push(saved);
     hospital.save();
+    }else{
+        const newPatients = new Patinet({
+            name: req.body.name,
+            phone: req.body.phone,
+            age:req.body.age,
+            receipt: req.file.filename,
+            doctor: doctorName,
+            hospital: hospitalName,
+            type: 'Online'
+        });
+        const saved = await newPatients.save();
+        patId=saved._id;
+        const hospital = await User.findByUsername(hospitalName);
+        hospital.patients.push(saved);
+        hospital.save();
+    }
+    
     if(req.body.type==='online'){
         const data = await Doctor.find({name:doctorName});
         let doctor = data[0];
