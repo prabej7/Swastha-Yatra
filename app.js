@@ -220,7 +220,7 @@ app.get('/billing',async(req,res)=>{
         res.render('billing',{qr:url});
     });
 });
-
+let patId;
 app.post('/billing',uploads.single('receipt'),async(req,res)=>{
     const {name,phone,age} = req.body;
     const newPatients = new Patinet({
@@ -232,10 +232,19 @@ app.post('/billing',uploads.single('receipt'),async(req,res)=>{
         hospital: hospitalName
     });
     const saved = await newPatients.save();
+    patId=saved._id;
     const hospital = await User.findByUsername(hospitalName);
     hospital.patients.push(saved);
     hospital.save();
 });
+
+app.get('/qr',(req,res)=>{
+    qr.toDataURL('localhost:3000/patinets/'+patId,(err,url)=>{
+        res.render('qr',{qr:url});
+    })
+});
+
+
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');
