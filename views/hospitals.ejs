@@ -1,7 +1,10 @@
 <%- include('partials/header') -%>
 
 <%data.forEach(element=>{%>
+    <a href="/hospitals/<%= element.username %>" >
+    <img src="/uploads/<%= element.img %>" />
     <p><%= element.username %></p>
+        </a>
     <%})%>
 
 <%- include('partials/footer') -%>

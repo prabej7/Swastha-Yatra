@@ -184,9 +184,10 @@ app.post('/updatePofile',uploads.single('profile'),async(req,res)=>{
 });
 
 app.post('/updatePay',async(req,res)=>{
-    await User.updateMany({_id:req.body._id},{$set:{eSewa:req.body.eSewa,eSewaNo:req.body.eSewaNo}});
+    const data = await User.updateOne({_id:req.user._id},{$set:{eSewa:req.body.eSewa,eSewaNo: req.body.eSewaNo}});
+    console.log(data);
     res.redirect('/myaccount');
-})
+});
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');
