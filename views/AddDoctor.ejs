@@ -7,4 +7,24 @@
     <button type="submit">Add</button>
 </form>
 
+<div class="doctors-display">
+    <ul>
+        <%data.forEach((element)=>{%>
+            <li><%= element.name %></li>
+            <%})%>
+    </ul>
+    <ul>
+        <%data.forEach((element)=>{%>
+            <li><%= element.type %></li>
+            <%})%>
+    </ul>
+    <ul>
+        <%data.forEach((element)=>{%>
+            <form action="/updateTime" method="post">
+                <button type="submit" value="<%= element._id %>" name="on"><%= element.attend %></button>
+            </form>
+            <%})%>
+    </ul>
+</div>
+
 <%- include('partials/footer') -%>

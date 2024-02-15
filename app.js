@@ -39,10 +39,19 @@ app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/UserDB');
 
+const doctorSchema = mongoose.Schema({
+    name: String,
+    type: String,
+    attend : String
+});
+
+const Doctor = mongoose.model('doctor',doctorSchema);
+
 const userSchema = mongoose.Schema({
     username: String,
     password: String,
-    type: String
+    type: String,
+    doctors: [doctorSchema],
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -53,18 +62,18 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.get('/',async(req,res)=>{
+app.get('/', async (req, res) => {
     res.render('home');
 });
 
-app.post('/',async(req,res)=>{
-    const {username,password,type} = req.body;
-    User.register({username},password,(err,user)=>{
-        if(err){
+app.post('/register', async (req, res) => {
+    const { username, password, type } = req.body;
+    User.register({ username }, password, (err, user) => {
+        if (err) {
             console.log(err);
-        }else{
-            passport.authenticate('local')(req,res,async()=>{
-                await User.updateOne({_id:req.user._id},{$set:{type:type}});
+        } else {
+            passport.authenticate('local')(req, res, async () => {
+                await User.updateOne({ _id: req.user._id }, { $set: { type: type } });
                 res.redirect('/account');
             });
         }
@@ -92,20 +101,45 @@ app.post('/login', (req, res) => {
 });
 
 
-
-app.get('/account',(req,res)=>{
-    if(req.isAuthenticated()){
+app.get('/account', (req, res) => {
+    if (req.isAuthenticated()) {
         res.render('account');
-    }else{
+    } else {
         res.redirect('/login');
     }
 });
 
 
-app.get('/account/doctors',async(req,res)=>{
-    res.render('AddDoctor');
+app.get('/account/doctors', async (req, res) => {
+    if(req.isAuthenticated()){
+        const doctors = await req.user.doctors;
+        res.render('AddDoctor',{data:doctors});
+    }else{
+        res.redirect('/login');
+    }
+    
+});
+
+app.post('/addDocs',uploads.single('profile'),async(req,res)=>{
+    const newDoctor =  new Doctor({
+        name: req.body.name,
+        type: req.body.type,
+        attend: 'Offline'
+    });
+    const saved = await newDoctor.save();
+    await req.user.doctors.push(saved);
+    req.user.save();
+    res.redirect('/account/doctors');
+});
+
+app.get('/register',(req,res)=>{
+    res.render('signup');
+});
+
+app.post('/updateTime',(req,res)=>{
+    
 })
 
-server.listen(3000,()=>{
+server.listen(3000, () => {
     console.log('Server is running at port 3000.');
 });
