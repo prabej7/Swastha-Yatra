@@ -1,0 +1,31 @@
+<%- include('partials/header') -%>
+<ul>
+<%data.forEach((element)=>{%>
+        <li><%= element.name %></li>
+        <%})%>
+</ul>
+
+<ul>
+    <%data.forEach((element)=>{%>
+            <li><%= element.phone %></li>
+            <%})%>
+    </ul>
+    <ul>
+        <%data.forEach((element)=>{%>
+                <li><%= element.age %></li>
+                <%})%>
+        </ul>
+    <ul>
+        <%data.forEach((element)=>{%>
+                <li><%= element.doctor %></li>
+                <%})%>
+        </ul>
+        <ul>
+            <%data.forEach((element)=>{%>
+                    <li>
+                        <a href="/uploads/<%= element.receipt %>">Download Receipt</a>
+                    </li>
+                    <%})%>
+            </ul>
+
+<%- include('partials/footer') -%>

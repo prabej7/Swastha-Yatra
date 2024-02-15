@@ -250,7 +250,21 @@ app.get('/patients/:text',async(req,res)=>{
     res.render('patDisplay',{data:patient});
 });
 
+app.get('/account/patients',async(req,res)=>{
+    if(req.isAuthenticated() && req.user.type==='hospital'){
+        const hospital = await User.findById(req.user._id);
+        res.render('patients',{data:hospital.patients});
+    }else{
+        res.redirect('/login');
+    }
+});
 
+app.post('/logout', function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');
