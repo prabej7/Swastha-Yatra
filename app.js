@@ -136,8 +136,18 @@ app.get('/register',(req,res)=>{
     res.render('signup');
 });
 
-app.post('/updateTime',(req,res)=>{
-    
+app.post('/updateTime',async(req,res)=>{
+    const doctor = await Doctor.findById(req.body.on);
+    let presence = doctor.attend;
+    if(presence==='Offline'){
+        doctor.attend = 'Online';
+    }else{
+        doctor.attend = 'Offline';
+    }
+    await doctor.save();
+    await User.updateOne({_id:req.user._id,'doctors._id':req.body.on},
+    {$set:{'doctors.$.attend':doctor.attend}});
+    res.redirect('/account/doctors');
 })
 
 server.listen(3000, () => {
