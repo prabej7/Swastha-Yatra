@@ -119,7 +119,7 @@ app.post('/login', (req, res) => {
 
 app.get('/account', (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('account');
+        res.render('account',{data:req.user});
     } else {
         res.redirect('/login');
     }
@@ -259,10 +259,10 @@ app.get('/account/patients',async(req,res)=>{
     }
 });
 
-app.post('/logout', function(req, res, next){
+app.get('/logout', function(req, res, next){
     req.logout(function(err) {
       if (err) { return next(err); }
-      res.redirect('/');
+      res.redirect('/login');
     });
   });
 

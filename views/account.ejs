@@ -1,5 +1,10 @@
 <%- include('partials/header') -%>
 
 <a href="/account/doctors">Doctors</a>
+<%if(data.type==='hospital'){%>
+    <a href="/account/patients">Patients</a>
+    <%}%>
+
+<a href="/logout">Logout</a>
 
 <%- include('partials/footer') -%>
