@@ -39,6 +39,7 @@ app.use(passport.session());
 
 mongoose.connect('mongodb://localhost:27017/UserDB');
 
+
 const doctorSchema = mongoose.Schema({
     name: String,
     type: String,
@@ -148,6 +149,11 @@ app.post('/updateTime',async(req,res)=>{
     await User.updateOne({_id:req.user._id,'doctors._id':req.body.on},
     {$set:{'doctors.$.attend':doctor.attend}});
     res.redirect('/account/doctors');
+});
+
+app.get('/hospitals',async(req,res)=>{
+    const hospitals = await User.find({type:'hospital'});
+    res.render('hospitals',{data:hospitals});
 })
 
 server.listen(3000, () => {
