@@ -227,15 +227,15 @@ app.post('/billing',uploads.single('receipt'),async(req,res)=>{
         name: req.body.name,
         phone: req.body.phone,
         age:req.body.age,
-        receipt: req.file.file,
+        receipt: req.file.filename,
         doctor: doctorName,
         hospital: hospitalName
     });
     const saved = await newPatients.save();
     const hospital = await User.findByUsername(hospitalName);
-    hospital.doctors.push(saved);
+    hospital.patients.push(saved);
     hospital.save();
-})
+});
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');
