@@ -90,7 +90,7 @@
         const btn = document.getElementById('btn');
         const textArea = document.getElementById('text-box');
         const socket = io();
-        // const name = prompt('Enter your name : ');
+        const name = prompt('Enter your name : ');
         const createMessage = (message,position)=>{
             let messages = document.createElement('div');
             messages.innerHTML = message;
@@ -105,7 +105,7 @@
         });
         btn.addEventListener('click',()=>{
             createMessage(textArea.value,'right');
-            socket.emit('receive',{user: name, msg: textArea.value});
+            socket.emit('receive',{user: , msg: textArea.value});
         });
         socket.on('send',(data)=>{
             createMessage(`${data.userName} : ${data.msg}`, 'left');

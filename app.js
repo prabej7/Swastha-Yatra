@@ -242,7 +242,16 @@ app.post('/billing',uploads.single('receipt'),async(req,res)=>{
     const hospital = await User.findByUsername(hospitalName);
     hospital.patients.push(saved);
     hospital.save();
-    res.redirect('/qr');
+    if(req.body.type==='online'){
+        const data = await Doctor.find({name:doctorName});
+        let doctor = data[0];
+        req.user.doctors.push(doctor);
+        await req.user.save();
+        res.redirect('/account');
+    }else{
+        res.redirect('/qr');
+    }
+    
 });
 
 app.get('/qr',(req,res)=>{
@@ -263,6 +272,30 @@ app.get('/account/patients',async(req,res)=>{
     }else{
         res.redirect('/login');
     }
+});
+let newUser;
+app.post('/chat',(req,res)=>{
+    newUser = req.user.username;
+});
+
+io.on('connection',socket=>{
+    socket.on('user-joined',(name)=>{
+        users[socket.id] = name;
+        socket.broadcast.emit('new-user',`${name} joined the chat !`);
+    });
+
+    socket.on('receive',(data)=>{
+        socket.broadcast.emit('send',{userName: data.user, msg: data.msg});
+    });
+
+    socket.on('disconnect',(data)=>{
+        socket.broadcast.emit('leave',{userName:users[socket.id],msg:'left the chat !'});
+    })
+    
+});
+
+app.get('/chat',(req,res)=>{
+    res.render('chat',{name:userName});
 });
 
 app.get('/logout', function(req, res, next){
