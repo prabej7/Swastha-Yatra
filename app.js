@@ -247,7 +247,7 @@ app.get('/qr',(req,res)=>{
 
 app.get('/patients/:text',async(req,res)=>{
     const patient = await Patinet.findById(req.params.text);
-    console.log(patient);
+    res.render('patDisplay',{data:patient});
 });
 
 
