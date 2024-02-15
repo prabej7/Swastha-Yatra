@@ -3,6 +3,9 @@
 <%data.forEach((element)=>{%>
     <img src="/uploads/<%= element.img %>" />
     <p><%= element.username %></p>
+    <form action="/doctors" method="post">
+        <button type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
+    </form>
 <%});%>
 
 <%- include('partials/footer') -%>

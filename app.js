@@ -118,9 +118,15 @@ app.post('/login', (req, res) => {
 });
 
 
-app.get('/account', (req, res) => {
+app.get('/account', async(req, res) => {
     if (req.isAuthenticated()) {
-        res.render('account',{data:req.user,doctors:req.user.doctors});
+        const data = await User.findById(req.user._id);
+        if(data.doctors===''){
+            res.render('account',{data:req.user.hospitals});
+        }else{
+            res.render('account',{data:req.user,doctors:req.user.doctors});
+        }
+        
     } else {
         res.redirect('/login');
     }
@@ -209,6 +215,12 @@ app.get('/doctors',async(req,res)=>{
     res.render('iDoctors',{data:doctors});
 });
 
+app.post('/doctors',(req,res)=>{
+    hospitalName = req.body.doctor;
+    doctorName ='';
+    res.redirect('/billing');
+});
+
 app.get('/hospitals/:text',async(req,res)=>{
     hospitalName = req.params.text;
     const hospital = await User.findByUsername(req.params.text);
@@ -233,7 +245,9 @@ app.get('/billing',async(req,res)=>{
         res.render('billing',{qr:url,auth:isAuth});
     });
 });
+
 let patId;
+
 app.post('/billing',uploads.single('receipt'),async(req,res)=>{
     const {name,phone,age} = req.body;
     if(req.body.type==='Offline'){
@@ -268,7 +282,7 @@ app.post('/billing',uploads.single('receipt'),async(req,res)=>{
         hospital.save();
     }
     
-    if(req.body.type==='online'){
+    if(req.body.type==='Online'){
         const data = await Doctor.find({name:doctorName});
         let doctor = data[0];
         req.user.doctors.push(doctor);
