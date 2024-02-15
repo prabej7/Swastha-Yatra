@@ -154,7 +154,20 @@ app.post('/updateTime',async(req,res)=>{
 app.get('/hospitals',async(req,res)=>{
     const hospitals = await User.find({type:'hospital'});
     res.render('hospitals',{data:hospitals});
-})
+});
+
+app.get('/myaccount',async(req,res)=>{
+    if(req.isAuthenticated()){
+        res.render('myaccount');
+    }else{
+        res.redirect('/login');
+    }
+    
+});
+
+app.post('/updatePofile',uploads.single('profile'),async(req,res)=>{
+    await User.updateOne({})
+});
 
 server.listen(3000, () => {
     console.log('Server is running at port 3000.');
