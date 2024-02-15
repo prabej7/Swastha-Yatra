@@ -268,7 +268,7 @@ app.get('/patients/:text',async(req,res)=>{
 app.get('/account/patients',async(req,res)=>{
     if(req.isAuthenticated() && req.user.type!=='patients'){
         const hospital = await User.findById(req.user._id);
-        res.render('patients',{data:hospital.patients});
+        res.render('patients',{data:hospital.patients,username:req.user.username});;
     }else{
         res.redirect('/login');
     }
@@ -291,7 +291,7 @@ io.on('connection',socket=>{
 
     socket.on('disconnect',(data)=>{
         socket.broadcast.emit('leave',{userName:users[socket.id],msg:'left the chat !'});
-    })
+    });
     
 });
 

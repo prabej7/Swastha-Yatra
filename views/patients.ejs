@@ -21,6 +21,13 @@
                 <%})%>
         </ul>
         <ul>
+                <%data.forEach((element)=>{%>
+                        <form action="/chat" method="post">
+                                <button type="submit" value="<%= username %>" name="username">Message</button>
+                        </form>
+                        <%})%>
+                </ul>
+        <ul>
             <%data.forEach((element)=>{%>
                     <li>
                         <a href="/uploads/<%= element.receipt %>">Download Receipt</a>
