@@ -119,7 +119,7 @@ app.post('/login', (req, res) => {
 
 app.get('/account', (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('account',{data:req.user});
+        res.render('account',{data:req.user,doctors:req.user.doctors});
     } else {
         res.redirect('/login');
     }
@@ -251,7 +251,7 @@ app.get('/patients/:text',async(req,res)=>{
 });
 
 app.get('/account/patients',async(req,res)=>{
-    if(req.isAuthenticated() && req.user.type==='hospital'){
+    if(req.isAuthenticated() && req.user.type!=='patients'){
         const hospital = await User.findById(req.user._id);
         res.render('patients',{data:hospital.patients});
     }else{
