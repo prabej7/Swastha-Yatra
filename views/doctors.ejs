@@ -3,7 +3,8 @@
 <%data.forEach((element)=>{%>
     <div class="doctor">
         <img src="/uploads/<%= element.img %>" />
-        <p><%= element.name %></p>
+        <p><%= element.username %></p>
+        <p><%= element.attend %></p>
         <form action="/preBilling" method="post">
             <button type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
         </form>

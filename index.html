@@ -1,119 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        *{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .message-box{
-            width: 200px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .left{
-            background-color: rgb(221, 221, 221);
-        }
-        .right{
-            background-color: rgb(0, 152, 190);
-            color: white;
-            position: relative;
-            left: 500px;
-        }
-        
-        .main{
-            display: flex;
-            flex-direction: column;
-            height: 500px;
-            justify-content: space-between;
-            width: 200px;
-            border: 1px solid rgb(230, 230, 230);
-            width: 800px;
-            padding: 40px 40px;
-            border-radius: 5px;
-        }
-        .message-opt{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 800px;
-        }
-        input{
-            height: 2rem;
-            width: 20rem;
-            padding: 0px 15px;
-            border-radius: 2px;
-            border: 1px solid rgb(201, 201, 201);
-        }
-        button{
-            height: 2.15rem;
-            width: 80px;
-            background-color: rgb(0, 152, 190);
-            border: none;
-            color: white;
-        }
-        .main-main{
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./public/css/main.css">
 </head>
+
 <body>
-    <div class="main-main">
-        <h1>Chat-box</h1>
-    <div class="main">
-        <div id="chat-box" class="chat-box">
-        <!-- <div class="message-box left">
-            Hi
+    <div class="nav-bar">
+        <div class="logo">
+            <h1>Swastha Yatra</h1>
         </div>
-        <div class="message-box right">
-            Hi
-        </div> -->
+        <div class="menus">
+            <a href="">Hospitals</a>
+            <a href="">Doctors</a>
+            <a href="">Billing</a>
+            <a href="">My Account</a>
+        </div>
     </div>
-    <div class="message-opt">
-        <input type="text" placeholder="Enter Message" id="text-box" />
-        <button type="button" id="btn" >Send</button>
+    <div class="hero-section register">
+        <div class="form-main">
+            <div class="head">
+                <h2>Register</h2>
+            </div>
+            <form action="/register" method="post" >
+                <div class="radios">
+                    <input type="radio" name="type" value="hospital" />
+                <label for="type">Hospital</label>
+                <input type="radio" name="type" value="doctor" />
+                <label for="type">Doctor</label>
+                <input type="radio" name="type" value="patient" />
+                <label for="type">Patient</label>
+                </div>
+                
+                <input type="text" name="username" placeholder="User Name" class="input" />
+                <input type="password" name="password" placeholder="Password" class="input" />
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div class="ask">
+                <p>Haven't register yet ? <a href="/login" >Login</a></p>
+            </div>
+        </div>
+        <div class="img-section">
+            <img src="./public/img/login.jpg" />
+        </div>
     </div>
-    </div>
-    </div>
-    
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const div = document.getElementById('chat-box');
-        const btn = document.getElementById('btn');
-        const textArea = document.getElementById('text-box');
-        const socket = io();
-        // const name = prompt('Enter your name : ');
-        const createMessage = (message,position)=>{
-            let messages = document.createElement('div');
-            messages.innerHTML = message;
-            messages.classList.add('message-box');
-            messages.classList.add(position);
-            div.append(messages);
-        }
-        socket.emit('user-joined',name);
-        socket.on('new-user',data=>{
-            console.log(data);
-            createMessage(data,'left');
-        });
-        btn.addEventListener('click',()=>{
-            createMessage(textArea.value,'right');
-            socket.emit('receive',{user: name, msg: textArea.value});
-        });
-        socket.on('send',(data)=>{
-            createMessage(`${data.userName} : ${data.msg}`, 'left');
-        });
-        socket.on('leave',(data)=>{
-            createMessage(`${data.userName} left the chat ! `,'left');
-        });
-    </script>
 </body>
+
 </html>

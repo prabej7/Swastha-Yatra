@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    /* background-color: rgb(245, 245, 245); */
+}
+
+.nav-bar{
+    height: 13vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #00a2ff;
+    color: white;
+}
+
+.logo > h1{
+    position: relative;
+    right: 117px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.menus{
+    display: flex;
+    gap: 30px;
+}
+
+.menus >a{
+    color: white;
+}
+
+.hero-section{
+    display: flex;
+    justify-content: center;
+    height: 88vh;
+    align-items: center;
+}
+
+.logo-section{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 88vh;
+    justify-content: center;
+    padding-left: 100px;
+}
+
+.logo-section > .main > h1{
+    font-size: 64px;
+    color: #00a2ff;
+}
+
+.logo-section > .sub > p{
+    color: #2693d2;
+}
+
+.img-section{
+    width: 50%;
+    padding-top: 50px;
+}
+
+.img-section >img{
+    height: 500px;
+    object-fit: cover;
+    margin-right: 50px;
+    margin-top: 15px;
+}
+
+.btn{
+    background-color: #00a2ff;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: white;
+}
+
+.btn2{
+    background-color: white;
+    color: black;
+    font-weight: 300;
+}
+
+.margin{
+    position: relative;
+    top: 40px;
+}
+
+.services{
+    height: 50vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 50px;
+}
+
+.heading > h2{
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    color: rgb(34, 34, 34);
+}
+
+.cards{
+    margin-top: 60px;
+    width: 300px;
+    background-color: rgb(247, 247, 247);
+    height: 20vh;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0px;
+}
+
+.cards-section{
+    display: flex;
+    gap: 30px;
+}
+
+.icons>i{
+    font-size: 90px;
+    color: #00a2ff;
+}
+
+.text > h3{
+    color: rgb(34, 34, 34);
+    font-weight: 300;
+    margin-top: 30px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+}
+
+.cards-main{
+    width: 300px;
+    text-align: center;
+}
+
+.cards-main > p{
+    margin-top: 40px;
+}
+
+form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.head > h2{
+    text-align: center;
+    color: #00a2ff;
+}
+
+.input{
+    height: 35px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    border: 1px solid rgb(208, 208, 208);
+}
+
+.btn{
+    border: none;
+}
+
+.ask{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.ask > p {
+    font-size: 14px;
+}
+
+.ask >p>a{
+    color: #2693d2;
+    font-weight: 400;
+}
+
+.img-section>img{
+    height: 400px;
+}
+
+.register{
+    padding-left: 140px;
+}
+
+
+
+

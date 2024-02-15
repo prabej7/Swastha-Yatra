@@ -1,16 +1,37 @@
 <%- include('partials/header') -%>
 
-<form action="/register" method="post">
-    <input type="radio" name="type" value="hospital" />
-    <label for="type">Hospital</label>
-    <input type="radio" name="type" value="doctor" />
-    <label for="type">Doctor</label> 
-    <input type="radio" name="type" value="patient" />
-    <label for="type">Patient</label> 
-    <input type="text" name="username" placeholder="User Name" />
-    <input type="password" name="password" placeholder="Password" />
-    <button type="submit" >Register</button> 
-</form>
+
+<div class="hero-section register">
+    <div class="form-main">
+        <div class="head">
+            <h2>Register</h2>
+        </div>
+        <form action="/register" method="post" >
+            <div class="radios">
+                <input type="radio" name="type" value="hospital" />
+            <label for="type">Hospital</label>
+            <input type="radio" name="type" value="doctor" />
+            <label for="type">Doctor</label>
+            <input type="radio" name="type" value="patient" />
+            <label for="type">Patient</label>
+            </div>
+            
+            <input type="text" name="username" placeholder="User Name" class="input" />
+            <input type="password" name="password" placeholder="Password" class="input" />
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <div class="ask">
+            <p>Haven't register yet ? <a href="/login" >Login</a></p>
+        </div>
+    </div>
+    <div class="img-section">
+        <img src="/img/login.jpg" />
+    </div>
+</div>
 
 
-<%- include('partials/footer') -%>
+    </div>
+    </div>
+
+
+    <%- include('partials/footer') -%>
