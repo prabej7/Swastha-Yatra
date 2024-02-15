@@ -91,10 +91,11 @@ app.post('/register', async (req, res) => {
         } else {
             passport.authenticate('local')(req, res, async () => {
                 await User.updateOne({ _id: req.user._id }, { $set: { type: type, img: 'img.png' } });
-                if(req.user.type==='patient'){
+                
+                if(req.body.type==='patient'){
                     res.redirect('/patientsAccount');
                 }else{
-                    res.redirect('/account');
+                    res.redirect('/myaccount');
                 }
                 
             });
@@ -150,7 +151,7 @@ app.get('/patientsAccount',async(req,res)=>{
 app.get('/account/doctors', async (req, res) => {
     if (req.isAuthenticated()) {
         const doctors = await req.user.doctors;
-        res.render('AddDoctor', { data: doctors });
+        res.render('AddDoctor', { data: doctors ,data1:req.user});
     } else {
         res.redirect('/login');
     }
@@ -195,7 +196,7 @@ app.get('/hospitals', async (req, res) => {
 
 app.get('/myaccount', async (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('myaccount',{data:req.user});
+        res.render('myaccount',{data:req.user,doctors:req.user.doctors});
     } else {
         res.redirect('/login');
     }
@@ -340,7 +341,7 @@ app.get('/patients/:text', async (req, res) => {
 app.get('/account/patients', async (req, res) => {
     if (req.isAuthenticated() && req.user.type !== 'patients') {
         const hospital = await User.findById(req.user._id);
-        res.render('patients', { data: hospital.patients, username: req.user.username });;
+        res.render('patients', { data: hospital.patients, username: req.user.username,data1:req.user });;
     } else {
         res.redirect('/login');
     }

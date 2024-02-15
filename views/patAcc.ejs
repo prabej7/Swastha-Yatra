@@ -1,21 +1,33 @@
 <%- include('partials/header') -%>
 
-<h2>Your Appointments</h2>
+    <h2 class="patHead">Your Appointments</h2>
+        <div class="patient-acc">
 
-<% if (Array.isArray(data) && data.length > 0) { %>
-    <% data.forEach((element) => { %>
-        <% if (element && element.username) { %>
-            <p><%= element.username %></p>
-            <img src="/uploads/<%= element.img %>" />
-            <form action="/chat" method="post">
-                <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
-            </form>
-        <% } else { %>
-            
-        <% } %>
-    <% }) %>
-<% } else { %>
-    <p>No data available</p>
-<% } %>
 
-<%- include('partials/footer') -%>
+
+            <% if (Array.isArray(data) && data.length> 0) { %>
+                <% data.forEach((element)=> { %>
+                    <% if (element && element.username) { %>
+                        <div class="cards">
+                            
+                            <img class="pic" src="/uploads/<%= element.img %>" />
+                            <p>
+                                <%= element.username %>
+                            </p>
+                            <form action="/chat" method="post">
+                                <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+                            </form>
+                        </div>
+                        <% } else { %>
+
+                            <% } %>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No data available</p>
+                                        <% } %>
+        </div>
+
+
+
+
+    <%- include('partials/footer') -%>

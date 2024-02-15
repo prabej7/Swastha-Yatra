@@ -1,30 +1,100 @@
 <%- include('partials/header') -%>
 
-<form action="/addDocs" method="post" enctype="multipart/form-data" >
-    <input type="file" name="profile" />
-    <input type="text" name="name" placeholder="Doctor's Name" />
-    <input type="text" name="type" placeholder="Specialization" />
-    <button type="submit">Add</button>
-</form>
+<div class="hero-section">
+    <div class="side-bar">
+        <%if(data1.type!=='patient'){%>
+            <%if(data1.type==='hospital' ){%>
+                <div class="items">
+                    <a href="/myaccount">
+                        <div class="smenus">
+                            Dashboard
+                        </div>
+                    </a>
 
-<div class="doctors-display">
-    <ul>
-        <%data.forEach((element)=>{%>
-            <li><%= element.username %></li>
-            <%})%>
-    </ul>
-    <ul>
-        <%data.forEach((element)=>{%>
-            <li><%= element.type %></li>
-            <%})%>
-    </ul>
-    <ul>
-        <%data.forEach((element)=>{%>
-            <form action="/updateTime" method="post">
-                <button type="submit" value="<%= element._id %>" name="on"><%= element.attend %></button>
-            </form>
-            <%})%>
-    </ul>
+                </div>
+                <div class="items">
+                    <a href="/account/doctors">
+                        <div class="smenus">
+                            Doctors
+                        </div>
+                    </a>
+                </div>
+                <%}%>
+                    <div class="items">
+                        <a href="/account/patients">
+                            <div class="smenus">
+                                Patients
+                            </div>
+                        </a>
+                    </div>
+                    <div class="items">
+                        <a href="/logout">
+                            <div class="smenus">
+                                Logout
+                            </div>
+                        </a>
+                    </div>
+                    <%}else{%>
+                        <h2>Your Appointments</h2>
+                        <%doctors.forEach((element)=>{%>
+                            <img src="/uploads/<%= element.img %>" />
+                            <p>
+                                <%= element.username %>
+                            </p>
+                            <form action="/chat" method="post">
+                                <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+                            </form>
+                            <%})%>
+                                <div class="doctors">
+
+                                </div>
+                                <%}%>
+
+    </div>
+    <div class="dashboard-main">
+        <div class="form-main">
+        <div class="head">
+            <h2>Add Doctors</h2>
+        </div>
+        <form action="/addDocs" method="post" enctype="multipart/form-data">
+            <input type="file" name="profile" />
+            <input type="text" name="name" placeholder="Doctor's Name" class="input" />
+            <input type="text" name="type" placeholder="Specialization" class="input" />
+            <button type="submit" class="btn">Add</button>
+        </form>
+    
+        <div class="doctors-display">
+            <ul>
+                <h3 style="margin-bottom: 20px;">Name</h3>
+                <%data.forEach((element)=>{%>
+                    <li>
+                        <%= element.username %>
+                    </li>
+                    <%})%>
+            </ul>
+            <ul>
+                <h3 style="margin-bottom: 20px;">Specialization</h3>
+                <%data.forEach((element)=>{%>
+                    <li>
+                        <%= element.type %>
+                    </li>
+                    <%})%>
+            </ul>
+            <ul class="move">
+                <h3 style="margin-bottom: 20px;">Presence</h3>
+                <%data.forEach((element)=>{%>
+                    <form class="move-form" action="/updateTime" method="post" class="form">
+                        <button type="submit" value="<%= element._id %>" name="on" class="btn btn3">
+                            <%= element.attend %>
+                        </button>
+                    </form>
+                    <%})%>
+            </ul>
+        </div>
+
+    </div>
+    </div>
+    
 </div>
 
-<%- include('partials/footer') -%>
+    <%- include('partials/footer') -%>

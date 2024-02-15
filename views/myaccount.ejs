@@ -1,28 +1,85 @@
 <%- include('partials/header') -%>
-<div class="hero-section">
-    <div class="form-main">
-        <div class="head">
-            <h2>My Account</h2>
+    <div class="hero-section">
+        <div class="side-bar">
+            <%if(data.type!=='patient'){%>
+                <div class="items">
+                    <a href="/myaccount">
+                        <div class="smenus">
+                            Dashboard
+                        </div>
+                    </a>
+
+                </div>
+                <%if(data.type==='hospital' ){%>
+                    
+                    <div class="items">
+                        <a href="/account/doctors">
+                            <div class="smenus">
+                                Doctors
+                            </div>
+                        </a>
+                    </div>
+                    <%}%>
+                        <div class="items">
+                            <a href="/account/patients">
+                                <div class="smenus">
+                                    Patients
+                                </div>
+                            </a>
+                        </div>
+                        <div class="items">
+                            <a href="/logout">
+                                <div class="smenus">
+                                    Logout
+                                </div>
+                            </a>
+                        </div>
+                        <%}else{%>
+                            <h2>Your Appointments</h2>
+                            <%doctors.forEach((element)=>{%>
+                                <img src="/uploads/<%= element.img %>" />
+                                <p>
+                                    <%= element.username %>
+                                </p>
+                                <form action="/chat" method="post">
+                                    <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+                                </form>
+                                <%})%>
+                                    <div class="doctors">
+
+                                    </div>
+                                    <%}%>
+
         </div>
+
+            <div class="dashboard-main">
+            <div class="form-main">
+            <div class="head">
+
+            </div>
             <div class="profile-pic">
-                 <img src="/uploads/<%= data.img %>" alt="Profile Picture" />  
+                <img src="/uploads/<%= data.img %>" alt="Profile Picture" />
             </div>
 
-<form action="/updatePofile" method="post" enctype="multipart/form-data">
-    <input type="file" name="profile" />
-    <button type="submit">Upload</button>
-</form>
+            <form action="/updatePofile" method="post" enctype="multipart/form-data">
+                <input type="file" name="profile" />
+                <button type="submit" class="btn">Upload</button>
+            </form>
 
-<form action="/updatePay" method="post" >
-    <input type="text" name="eSewaNo" placeholder="eSewa Number" />
-    <input type="text" name="eSewa" placeholder="Registerd Name" />
-    <button type="submit">Update</button>
-</form> 
+            <form action="/updatePay" method="post">
+                <input type="text" name="eSewaNo" class="input" placeholder="eSewa Number"
+                    value="<%= data.eSewaNo %>" />
+                <input type="text" name="eSewa" class="input" placeholder="Registerd Name" value="<%= data.eSewa %>" />
+                <button type="submit" class="btn">Update</button>
+            </form>
 
-</div>
-</div>
+        </div>
+        
+        </div>
+        
+    </div>
 
 
 
 
-<%- include('partials/footer') -%>
+    <%- include('partials/footer') -%>

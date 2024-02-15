@@ -1,11 +1,22 @@
 <%- include('partials/header') -%>
 
 <%data.forEach((element)=>{%>
-    <img src="/uploads/<%= element.img %>" />
-    <p><%= element.username %></p>
-    <form action="/doctors" method="post">
-        <button type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
-    </form>
+    <div class="doc-main">
+        <div class="doctor-details">
+            <div class="doc-img">
+            <img src="/uploads/<%= element.img %>">
+             </div>
+             <div class="hos-details">
+                <p class="hos-name"><%= element.username %></p>
+                <p class="hos-address">Birta, Birgunj</p>
+                <form action="/doctors" method="post">
+                    <button type="submit" class="btn" value="<%= element.username %>" name="doctor">Appoint</button>
+                </form>
+             </div>
+             
+        </div>
+    </div>
+
 <%});%>
 
 <%- include('partials/footer') -%>

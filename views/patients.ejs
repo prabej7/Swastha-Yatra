@@ -1,44 +1,136 @@
 <%- include('partials/header') -%>
-<ul>
-<%data.forEach((element)=>{%>
-        <li><%= element.name %></li>
-        <%})%>
-</ul>
 
-<ul>
-    <%data.forEach((element)=>{%>
-            <li><%= element.phone %></li>
-            <%})%>
-    </ul>
-    <ul>
-        <%data.forEach((element)=>{%>
-                <li><%= element.age %></li>
-                <%})%>
-        </ul>
-    <ul>
-        <%data.forEach((element)=>{%>
-                <li><%= element.doctor %></li>
-                <%})%>
-        </ul>
-        <ul>
-                <%data.forEach((element)=>{%>
-                        <li>
-                        <%if(element.type==='Online'){%>
-                                <form action="/chat" method="post">
-                                <button type="submit" value="<%= username %>" name="username">Message</button>
-                        </form>
-                                <%}%>
-                        </li>
-                        
-                        <%})%>
-                
-                </ul>
-        <ul>
-            <%data.forEach((element)=>{%>
-                    <li>
-                        <a href="/uploads/<%= element.receipt %>">Download Receipt</a>
-                    </li>
-                    <%})%>
-            </ul>
+        <div class="hero-section">
+                <div class="side-bar">
+                        <%if(data1.type!=='patient'){%>
+                                <div class="items">
+                                        <a href="/myaccount">
+                                                <div class="smenus">
+                                                        Dashboard
+                                                </div>
+                                        </a>
 
-<%- include('partials/footer') -%>
+                                </div>
+                                <%if(data1.type==='hospital' ){%>
+
+                                        <div class="items">
+                                                <a href="/account/doctors">
+                                                        <div class="smenus">
+                                                                Doctors
+                                                        </div>
+                                                </a>
+                                        </div>
+                                        <%}%>
+                                                <div class="items">
+                                                        <a href="/account/patients">
+                                                                <div class="smenus">
+                                                                        Patients
+                                                                </div>
+                                                        </a>
+                                                </div>
+                                                <div class="items">
+                                                        <a href="/logout">
+                                                                <div class="smenus">
+                                                                        Logout
+                                                                </div>
+                                                        </a>
+                                                </div>
+                                                <%}else{%>
+                                                        <h2>Your Appointments</h2>
+                                                        <%doctors.forEach((element)=>{%>
+                                                                <img src="/uploads/<%= element.img %>" />
+                                                                <p>
+                                                                        <%= element.username %>
+                                                                </p>
+                                                                <form action="/chat" method="post">
+                                                                        <button type="submit" value="<%= element._id %>"
+                                                                                name="doctor">Message</button>
+                                                                </form>
+                                                                <%})%>
+                                                                        <div class="doctors">
+
+                                                                        </div>
+                                                                        <%}%>
+
+                </div>
+                <div class="dashboard-main">
+                        <div class="form-main">
+                                <div class="head">
+                                        <h2>Patients</h2>
+                                </div>
+                                <div class="doctors-display">
+                                        <ul>
+                                                <h3 style="margin-bottom: 20px;">Name</h3>
+                                                <%data.forEach((element)=>{%>
+                                                        <li style="list-style: number;">
+                                                                <%= element.name %>
+                                                        </li>
+                                                        <%})%>
+                                        </ul>
+
+                                        <ul>
+                                                <h3 style="margin-bottom: 20px;">Phone no.</h3>
+                                                <%data.forEach((element)=>{%>
+                                                        <li style="list-style: none;">
+                                                                <%= element.phone %>
+                                                        </li>
+                                                        <%})%>
+                                        </ul>
+                                        <ul>
+                                                <h3 style="margin-bottom: 20px;">Age</h3>
+                                                <%data.forEach((element)=>{%>
+                                                        <li style="list-style: none;">
+                                                                <%= element.age %>
+                                                        </li>
+                                                        <%})%>
+                                        </ul>
+
+                                        <%if(data1==='doctor'){%>
+                                                <ul>
+                                                        <h3 style="margin-bottom: 20px;">Doctor</h3>
+                                                        <%data.forEach((element)=>{%>
+                                                                <li style="list-style: none;">
+                                                                        <%= element.doctor %>
+                                                                </li>
+                                                                <%})%>
+                                                </ul>
+                                                <%}%>
+
+
+                                                        <ul>
+                                                                <h3 style="margin-bottom: 20px;">Message</h3>
+                                                                <%data.forEach((element)=>{%>
+                                                                        <li style="list-style: none;">
+                                                                                <%if(element.type==='Online'){%>
+                                                                                        <form action="/chat"
+                                                                                                method="post">
+                                                                                                <button type="submit"
+                                                                                                        value="<%= username %>"
+                                                                                                        name="username">Message</button>
+                                                                                        </form>
+                                                                                        <%}%>
+                                                                        </li>
+
+                                                                        <%})%>
+
+                                                        </ul>
+                                                        <ul>
+                                                                <h3 style="margin-bottom: 20px;">Dowload Receipt</h3>
+                                                                <%data.forEach((element)=>{%>
+                                                                        <li style="list-style: none;">
+                                                                                <a
+                                                                                        href="/uploads/<%= element.receipt %>">Download
+                                                                                        Receipt</a>
+                                                                        </li>
+                                                                        <%})%>
+                                                        </ul>
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+
+
+
+
+        <%- include('partials/footer') -%>

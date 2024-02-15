@@ -239,6 +239,132 @@ button{
     cursor: pointer;
 }
 
+.head{
+    margin-bottom: 20px;
+}
+
+.form-main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-main{
+    padding-top: 20px;
+}
+.form-main > form{
+    width: 300px;
+
+}
+
+.profile-pic{
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    padding-left: 15px;
+}
+
+.profile-pic>img{
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.doctors-display{
+    display: flex;
+    margin-top: 50px;
+}
+
+.btn3{
+    padding: 2.5px 5px;
+    position: relative;
+    bottom: 21px;
+}
+
+li{
+    margin-bottom: 21px;
+}
+
+
+.move-form{
+    position: relative;
+    top: 20px;
+}
+
+.move{
+    position: relative;
+    margin-bottom: -6px;
+}
+
+.patient-acc{
+    display: flex;
+}
+
+.pic{
+    max-height: 150px;
+}
+
+.doc-img>img{
+    max-height: 200px;
+}
+
+.patHead{
+    margin-top: 40px;
+    margin-left: 85px;
+    font-size: 32px;
+
+}
+
+.docs-detail{
+    display: flex;
+    font-weight: bold;
+    align-items: left;
+    width: 50%;
+    height: 100%;
+    margin-left: 40px;
+}
+
+.doctor-details{
+    display: flex;
+}
+
+.hos-details{
+    display: flex;
+    justify-content: top;
+    margin-top: 50px;
+    align-items: right;
+    flex-direction: column;
+    width: 100%;
+    color: #1c1c1c;
+    height: 100%;
+    margin-left: 50px;
+    font-size: 35px;
+}
+.hos-name{
+    margin-top: 40px;
+    font-weight: bold;
+}
+.hos-address{
+    font-size: 20px;
+}
+
+.doc-img{
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.hos-details{
+    
+}
+
+.doc-main{
+    display: flex;
+}
+
+
+
+
 
 
 
