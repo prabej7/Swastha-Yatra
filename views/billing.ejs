@@ -1,0 +1,12 @@
+<%- include('partials/header') -%>
+
+<form action="/billing" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Name" />
+    <input type="text" name="phone" placeholder="Phone no." />
+    <input type="text" name="age" placeholder="Age" />
+    <img src="<%= qr %>" />
+    <input type="file" name="receipt" />
+    <button type="submit">Submit</button>
+</form>
+
+<%- include('partials/footer') -%>

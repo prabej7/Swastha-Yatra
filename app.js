@@ -199,11 +199,19 @@ app.get('/hospitals/:text',async(req,res)=>{
 
 app.post('/preBilling',(req,res)=>{
     doctorName = req.body.doctor;
-    console.log(doctorName);
+    res.redirect('/billing');
 });
 
-app.get('/billing',(req,req)=>{
-    res.render('')
+app.get('/billing',async(req,res)=>{
+    const data = await User.findByUsername(hospitalName);
+    let eSewaUrl = `"eSewa_id:":"${data.eSewaNo}","name":"${data.eSewa}"`;
+    qrCode.toDataURL(eSewaUrl,(err,url)=>{
+        res.render('billing',{qr:url});
+    });
+});
+
+app.post('/billing',(req,res)=>{
+    console.log()
 })
 
 server.listen(3000, () => {
