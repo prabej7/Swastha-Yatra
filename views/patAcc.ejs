@@ -1,0 +1,21 @@
+<%- include('partials/header') -%>
+
+<h2>Your Appointments</h2>
+
+<% if (Array.isArray(data) && data.length > 0) { %>
+    <% data.forEach((element) => { %>
+        <% if (element && element.username) { %>
+            <p><%= element.username %></p>
+            <img src="/uploads/<%= element.img %>" />
+            <form action="/chat" method="post">
+                <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+            </form>
+        <% } else { %>
+            
+        <% } %>
+    <% }) %>
+<% } else { %>
+    <p>No data available</p>
+<% } %>
+
+<%- include('partials/footer') -%>

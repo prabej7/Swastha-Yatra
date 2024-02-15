@@ -91,7 +91,12 @@ app.post('/register', async (req, res) => {
         } else {
             passport.authenticate('local')(req, res, async () => {
                 await User.updateOne({ _id: req.user._id }, { $set: { type: type, img: 'img.png' } });
-                res.redirect('/account');
+                if(req.user.type==='patient'){
+                    res.redirect('/patientsAccount');
+                }else{
+                    res.redirect('/account');
+                }
+                
             });
         }
     });
@@ -111,7 +116,12 @@ app.post('/login', (req, res) => {
             console.log(err);
         } else {
             passport.authenticate('local')(req, res, () => {
-                res.redirect('/account');
+                if(req.user.type==='patient'){
+                    res.redirect('/patientsAccount');
+                }else{
+                    res.redirect('/account');
+                }
+                
             });
         }
     });
@@ -119,22 +129,19 @@ app.post('/login', (req, res) => {
 
 
 app.get('/account', async (req, res) => {
-    if (req.isAuthenticated()) {
-        if (req.user.type==='patient' && !req.user.hospital) {
-            const data = await User.findById(req.user.id);
-            let docs = data.doctors;
-            let newArr = [];
-            docs.forEach(async(element) => {
-                const d = await User.findById(element._id);
-                await newArr.push(d);
-                await res.render('account',{doctors:newArr,data:req.user});
-            });
-            
-        } else {
-            res.render('account', { data: req.user, doctors: req.user.doctors });
-        }
+    if (req.isAuthenticated()){
+        res.render('account', { data: req.user, doctors: req.user.doctors });
 
-    } else {
+} else {
+    res.redirect('/login');
+}
+});
+
+app.get('/patientsAccount',async(req,res)=>{
+    if(req.isAuthenticated()){
+        const data = await User.findById(req.user._id);
+        res.render('patAcc',{data:data.doctors});
+    }else{
         res.redirect('/login');
     }
 });
@@ -152,7 +159,7 @@ app.get('/account/doctors', async (req, res) => {
 
 app.post('/addDocs', uploads.single('profile'), async (req, res) => {
     const newDoctor = new Doctor({
-        name: req.body.name,
+        username: req.body.name,
         type: req.body.type,
         attend: 'Offline',
         img: req.file.filename
@@ -298,13 +305,18 @@ app.post('/billing', uploads.single('receipt'), async (req, res) => {
             let doctor = data;
             req.user.doctors.push(doctor);
             await req.user.save();
-            res.redirect('/account');
+            res.redirect('/patientsAccount');
         } else {
-            data = await Doctor.find({ name: doctorName });
+            data = await Doctor.find({ username: doctorName });
             let doctor = data[0];
             req.user.doctors.push(doctor);
             await req.user.save();
-            res.redirect('/account');
+            if(req.user.type==='patient'){
+                res.redirect('/patientsAccount');
+            }else{
+                res.redirect('/account');
+            }
+            
         }
 
 
