@@ -276,8 +276,9 @@ app.get('/account/patients',async(req,res)=>{
 let newUser;
 app.post('/chat',(req,res)=>{
     newUser = req.user.username;
+    res.redirect('/chat');
 });
-
+let users={};
 io.on('connection',socket=>{
     socket.on('user-joined',(name)=>{
         users[socket.id] = name;
@@ -295,7 +296,7 @@ io.on('connection',socket=>{
 });
 
 app.get('/chat',(req,res)=>{
-    res.render('chat',{name:userName});
+    res.render('chat',{name:newUser});
 });
 
 app.get('/logout', function(req, res, next){

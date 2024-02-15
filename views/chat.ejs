@@ -83,14 +83,15 @@
     </div>
     </div>
     
-    
+    <p id="userName"><%=name%></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const div = document.getElementById('chat-box');
         const btn = document.getElementById('btn');
         const textArea = document.getElementById('text-box');
+        let user = document.getElementById('userName');
         const socket = io();
-        const name = prompt('Enter your name : ');
+        // const name = prompt('Enter your name : ');
         const createMessage = (message,position)=>{
             let messages = document.createElement('div');
             messages.innerHTML = message;
@@ -98,14 +99,14 @@
             messages.classList.add(position);
             div.append(messages);
         }
-        socket.emit('user-joined',name);
+        socket.emit('user-joined',user.textContent);
         socket.on('new-user',data=>{
             console.log(data);
             createMessage(data,'left');
         });
         btn.addEventListener('click',()=>{
             createMessage(textArea.value,'right');
-            socket.emit('receive',{user: , msg: textArea.value});
+            socket.emit('receive',{user: user.textContent , msg: textArea.value});
         });
         socket.on('send',(data)=>{
             createMessage(`${data.userName} : ${data.msg}`, 'left');
