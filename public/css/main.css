@@ -461,6 +461,12 @@ li {
     color: #00a2ff;
 }
 
+.right{
+    position: relative;
+    right: 20px;
+}
+
+
 .qr-sec {
     display: flex;
     flex-direction: column;
@@ -540,5 +546,10 @@ li {
 .btn2:hover{
     background-color: #00a2ff;
     color: white;
+}
+
+.nobg{
+    background-color: transparent;
+    border: none;
 }
 

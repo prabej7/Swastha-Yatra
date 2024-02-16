@@ -357,7 +357,7 @@ app.post('/billing', uploads.single('receipt'), async (req, res) => {
 });
 
 app.get('/qr', (req, res) => {
-    qrCode.toDataURL('localhost:3000/patients/' + patId, (err, url) => {
+    qrCode.toDataURL('192.168.1.125:3000/patients/' + patId, (err, url) => {
         res.render('qr', { qr: url });
     });
 });

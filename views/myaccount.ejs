@@ -42,8 +42,8 @@
                                 <p>
                                     <%= element.username %>
                                 </p>
-                                <form action="/chat" method="post">
-                                    <button type="submit" value="<%= element._id %>" name="doctor">Message</button>
+                                <form action="/chat" method="post" class="form">
+                                    <button type="submit" id="btn" value="<%= element._id %>" name="doctor" >Message</button>
                                 </form>
                                 <%})%>
                                     <div class="doctors">
@@ -65,7 +65,7 @@
                 <input type="file" name="profile" />                
                 <button type="submit" class="btn">Upload</button>
             </form>
-            <div class="head" style="font-size: 24px;margin-left: 25px; font-weight: 400;">Setup Payment Options</div>
+            <div class="head" style="font-size: 24px;margin-left: 25px; font-weight: 400;">Setup Account Options</div>
             <form class="form" action="/updatePay" method="post">
                 <%if(data.type==='doctor'){%>
                     <input type="text" name="type" placeholder="Specialization" class="input" value="<%= data.spec %>" />
