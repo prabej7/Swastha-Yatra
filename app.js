@@ -118,6 +118,7 @@ app.post('/login', (req, res) => {
         } else {
             passport.authenticate('local')(req, res, () => {
                 if(req.user.type==='patient'){
+                    console.log('ok');
                     res.redirect('/patientsAccount');
                 }else{
                     res.redirect('/myaccount');
