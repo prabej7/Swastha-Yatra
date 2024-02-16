@@ -7,8 +7,10 @@
                 <% data.forEach((element)=> { %>
                     <% if (element && element.username) { %>
                         <div class="cards">
+                            <div class="container">
+                                <img class="pic" src="/uploads/<%= element.img %>" />
+                            </div>
                             
-                            <img class="pic" src="/uploads/<%= element.img %>" />
                             <p>
                                 <%= element.username %>
                             </p>

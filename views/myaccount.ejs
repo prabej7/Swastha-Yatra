@@ -60,9 +60,12 @@
             <div class="profile-pic">
                 <img src="/uploads/<%= data.img %>" alt="Profile Picture" />
             </div>
-
             <form action="/updatePofile" method="post" enctype="multipart/form-data">
                 <input type="file" name="profile" />
+                <%if(data.type==='doctor'){%>
+                    <input type="text" name="type" placeholder="Specialization" class="input" value="<%= data.spec %>" />
+                <%}%>
+                
                 <button type="submit" class="btn">Upload</button>
             </form>
 

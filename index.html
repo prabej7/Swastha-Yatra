@@ -22,44 +22,50 @@
             <a href="">My Account</a>
         </div>
     </div>
-    <div class="hero-section dash">
-        <div class="side-bar">
-            <div class="items">
-                <div class="smenus">
-                    Dashboard
+    <!-- <div class="patient-acc">
+        <%data.forEach(element=>{%>
+            <a href="/hospitals/<%=element.username%>" class="cards">
+                <div class="container1">
+                    <img src="/uploads/<%= element.img %>" />
                 </div>
-            </div>
-            <div class="items">
-                <div class="icons">
+                <div class="hos-details">
+                    <p class="d1">
+                        <%= element.username %>
+                    </p>
+                    <p class="d2">Birta, Birgunj</p>
                 </div>
-                <div class="smenus">
-                    Doctors
-                </div>
-            </div>
-            <div class="items">
-                <div class="icons">
-                </div>
-                <div class="smenus">
-                    Patients
-                </div>
-            </div>
-            <div class="items">
-                <div class="icons">
-                </div>
-                <div class="smenus">
-                    Logout
-                </div>
-            </div>
+            </a>
+        <%})%>
+    </div> -->
 
+    <!-- <div class="hospital-main">
+        <%data.forEach(element=>{%>
+                <div class="container1">
+                    <img src="/uploads/<%= element.img %>" />
+                </div>
+                <div class="hos-details">
+                    <p class="d1">
+                        <%= element.username %>
+                    </p>
+                    <p class="d2"><%= element.address %></p>
+                </div>
+                <%})%>
+    </div> -->
 
-
+    <div class="main-hospital">
+        <div class="hos-card">
+            <div class="container1">
+                <img src="./public/img/Artboard 1.png" />
+            </div>
+            <div class="details">
+                <div class="name">
+                    <h1>Narayani Hospital</h1>
+                </div>
+                <div class="address">
+                    <p>Birta, Birgunj</p>
+                </div>
+            </div>
         </div>
-        <div class="dashboard-main">
-            
-        </div>
-    </div>
-
-
     </div>
 
 </body>

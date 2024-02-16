@@ -109,7 +109,6 @@ a{
 .cards{
     margin-top: 60px;
     width: 300px;
-    background-color: rgb(247, 247, 247);
     height: 20vh;
     border-radius: 4px;
     display: flex;
@@ -259,16 +258,17 @@ button{
 }
 
 .profile-pic{
-    max-width: 200px;
+    width: 200px;
     display: flex;
     justify-content: center;
     padding-left: 15px;
 }
 
 .profile-pic>img{
-    height: 150px;
+    max-width: 200px;
+    aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 50%;
+    
 }
 
 .doctors-display{
@@ -354,14 +354,122 @@ li{
     margin-left: 30px;
 }
 
-.hos-details{
-    
+.container{
+    width: 300px;
+}
+
+.container > img{
+    max-width: 300px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50px;
+    margin-left: 75px;
 }
 
 .doc-main{
     display: flex;
 }
 
+.hospital-card{
+    display: flex;
+}
+
+.doc-main{
+    display: flex;
+}
+
+.container1{
+    width: 300px;
+    margin: 0px;
+}
+
+
+
+.container1>img{
+    max-width: 300px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.card2{
+    display: flex;
+}
+
+.d1{
+    font-weight: 700;
+}
+
+.d1 ,.d1{
+    margin-top: 30px;
+}
+
+.hospital-main{
+    display: flex;
+    
+}
+
+.main-hospital{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.hos-card{
+    display: flex;
+    max-height: 400px;
+    align-items: center;
+}
+
+.hos-card{
+    margin-left: 40px;
+}
+
+.form{
+    margin-left: 40px;
+}
+
+.move{
+    margin-top: 60px;
+}
+
+
+.container1 > img{
+    border-radius: 50%;
+}
+
+.qr{
+    max-height: 200px;
+    width: 200px;
+    object-fit: cover;
+    padding-right: 20px;
+}
+
+.head{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -5px;
+    font-weight: 700;
+    font-size: 28px;
+    color: #00a2ff;
+}
+
+.qr-sec{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.move1{
+    position: relative;
+    top: 90px;
+}
+
+.dis{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
 
 

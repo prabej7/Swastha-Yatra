@@ -1,10 +1,23 @@
 <%- include('partials/header') -%>
 
-<p>Name: <%= data.name %></p>
-<p>Phone no.:<%= data.phone %></p>
-<p>Age: <%= data.age %></p>
-<p>Doctor: <%= data.doctor %></p>
-<p>Hospital: <%= data.hospital %></p>
-<a href="/uploads/<%= data.receipt %>" download="">Download Receipt</p>
+    <div class="hero-section dis">
+        <p class="head">Patients Details</p>
+        <div class="pat-diplay">
+           <p>Name: <%= data.name %>
+        </p>
+        <p>Phone no.:<%= data.phone %>
+        </p>
+        <p>Age: <%= data.age %>
+        </p>
+        <p>Doctor: <%= data.doctor %>
+        </p>
+        <p>Hospital: <%= data.hospital %>
+        </p>
 
-<%- include('partials/footer') -%>
+        </div>
+        <a href="/uploads/<%= data.receipt %>" class="btn" download="">Download Receipt</p> 
+        
+    </div>
+
+
+    <%- include('partials/footer') -%>

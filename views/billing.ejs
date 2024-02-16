@@ -1,21 +1,27 @@
 <%- include('partials/header') -%>
+<div class="head ">Make your payment </div>
+    <div class="hero-section">
+        
+        <form action="/billing" method="post" enctype="multipart/form-data">
+            <div class="radios">
+                <input type="radio" name="type" value="Offline" />
+                <label for="type">Offline</label>
+                <%if(auth===1){%>
+                    <input type="radio" name="type" value="Online" />
+                    <label for="type">Online</label>
+                    <%}else{%>
+                        <input type="radio" name="type" value="Online" disabled="true" />
+                        <label for="type">Online</label>
+                        <%}%>
+            </div>
+            <input type="text" name="name" placeholder="Name" class="input" />
+            <input type="text" name="phone" placeholder="Phone no." class="input" />
+            <input type="text" name="age" placeholder="Age" class="input" />
+            <img class="qr" src="<%= qr %>" />
+            <input type="file" name="receipt" />
+            <button type="submit" class="btn">Submit</button>
+        </form>
 
-<form action="/billing" method="post" enctype="multipart/form-data">
-    <input type="radio" name="type" value="Offline" />
-    <label for="type">Offline</label>
-    <%if(auth===1){%>
-            <input type="radio" name="type" value="Online"  />
-                <label for="type">Online</label>
-        <%}else{%>
-            <input type="radio" name="type" value="Online" disabled="true" />
-                <label for="type">Online</label>
-            <%}%>
-    <input type="text" name="name" placeholder="Name" />
-    <input type="text" name="phone" placeholder="Phone no." />
-    <input type="text" name="age" placeholder="Age" />
-    <img src="<%= qr %>" />
-    <input type="file" name="receipt" />
-    <button type="submit">Submit</button>
-</form>
+    </div>
 
-<%- include('partials/footer') -%>
+    <%- include('partials/footer') -%>

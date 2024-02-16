@@ -1,20 +1,19 @@
 <%- include('partials/header') -%>
-
-    <%data.forEach(element=>{%>
-        
-        <div class="doc-main">
-            <a href="/hospitals/<%=element.username%>" >
-    <div class="doctor-details">
-        <div class="doc-img">
-        <img src="/uploads/<%= element.img %>">
-         </div>
-         <div class="hos-details">
-            <p class="hos-name"><%= element.username %></p>
-            <p class="hos-address">Birta, Birgunj</p>
-         </div>
-         </a>
+    <div class="main-hospital">
+        <%data.forEach(element=>{%>
+        <a href="/hospitals/<%= element.username %>" class="hos-card">
+            <div class="container1">
+                <img src="/uploads/<%= element.img %>" />
+            </div>
+            <div class="details">
+                <div class="name">
+                    <h1><%= element.username %></h1>
+                </div>
+                <div class="address">
+                    <p><%= element.address %></p>
+                </div>
+            </div>
+        </a>
+        <%})%>
     </div>
-</a>
-</div>
-    <%})%>
-<%- include('partials/footer') -%>
+        <%- include('partials/footer') -%>
