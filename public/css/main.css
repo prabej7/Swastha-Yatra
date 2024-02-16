@@ -505,6 +505,10 @@ li {
     height: 1000px;
 }
 
+.details{
+    margin-left: 40px;
+}
+
 .logo-img{
     width: 70px;
     display: flex;
