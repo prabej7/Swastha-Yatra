@@ -1,13 +1,13 @@
-*{
+* {
     margin: 0;
     font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
     /* background-color: rgb(245, 245, 245); */
 }
 
-.nav-bar{
+.nav-bar {
     height: 13vh;
     display: flex;
     align-items: center;
@@ -16,33 +16,33 @@ body{
     color: white;
 }
 
-.logo > h1{
+.logo>h1 {
     position: relative;
     right: 117px;
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
 
-.menus{
+.menus {
     display: flex;
     gap: 30px;
 }
 
-.menus >a{
+.menus>a {
     color: white;
 }
 
-.hero-section{
+.hero-section {
     display: flex;
     justify-content: center;
     height: 88vh;
     align-items: center;
 }
 
-.logo-section{
+.logo-section {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -51,46 +51,46 @@ a{
     padding-left: 100px;
 }
 
-.logo-section > .main > h1{
+.logo-section>.main>h1 {
     font-size: 64px;
     color: #00a2ff;
 }
 
-.logo-section > .sub > p{
+.logo-section>.sub>p {
     color: #2693d2;
 }
 
-.img-section{
+.img-section {
     width: 50%;
     padding-top: 50px;
 }
 
-.img-section >img{
+.img-section>img {
     height: 500px;
     object-fit: cover;
     margin-right: 50px;
     margin-top: 15px;
 }
 
-.btn{
+.btn {
     background-color: #00a2ff;
     padding: 15px 20px;
     border-radius: 4px;
     color: white;
 }
 
-.btn2{
+.btn2 {
     background-color: white;
     color: black;
     font-weight: 300;
 }
 
-.margin{
+.margin {
     position: relative;
     top: 40px;
 }
 
-.services{
+.services {
     height: 50vh;
     background-color: white;
     display: flex;
@@ -99,14 +99,14 @@ a{
     padding: 50px 50px;
 }
 
-.heading > h2{
+.heading>h2 {
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 10px;
     color: rgb(34, 34, 34);
 }
 
-.cards{
+.cards {
     margin-top: 60px;
     width: 300px;
     height: 20vh;
@@ -118,102 +118,102 @@ a{
     padding: 25px 0px;
 }
 
-.cards-section{
+.cards-section {
     display: flex;
     gap: 30px;
 }
 
-.icons>i{
+.icons>i {
     font-size: 90px;
     color: #00a2ff;
 }
 
-.text > h3{
+.text>h3 {
     color: rgb(34, 34, 34);
     font-weight: 300;
     margin-top: 30px;
 }
 
-footer{
+footer {
     display: flex;
     justify-content: center;
     height: 50px;
     align-items: center;
 }
 
-.cards-main{
+.cards-main {
     width: 300px;
     text-align: center;
 }
 
-.cards-main > p{
+.cards-main>p {
     margin-top: 40px;
 }
 
-.maveup{
+.maveup {
     margin-bottom: 40px;
 }
 
-.form{
+.form {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.head > h2{
+.head>h2 {
     text-align: center;
     color: #00a2ff;
 }
 
-.input{
+.input {
     height: 35px;
     padding: 5px 15px;
     border-radius: 4px;
     border: 1px solid rgb(208, 208, 208);
 }
 
-.btn{
+.btn {
     border: none;
 }
 
-.ask{
+.ask {
     margin-top: 20px;
     text-align: center;
 }
 
-.ask > p {
+.ask>p {
     font-size: 14px;
 }
 
-.ask >p>a{
+.ask>p>a {
     color: #2693d2;
     font-weight: 400;
 }
 
-.img-section>img{
+.img-section>img {
     height: 400px;
 }
 
-.register{
+.register {
     padding-left: 140px;
 }
 
-.items{
+.items {
     display: flex;
 }
 
-i{
- color: #2497ff;
-  margin-right: 10px;
-   font-size: 20px;
+i {
+    color: #2497ff;
+    margin-right: 10px;
+    font-size: 20px;
 }
 
-.dash{
+.dash {
     display: flex;
 }
 
-.side-bar{
+.side-bar {
     width: 15%;
     height: 100%;
     display: flex;
@@ -221,106 +221,107 @@ i{
     padding-right: 40px;
 }
 
-.dashboard-main{
+.dashboard-main {
     width: 75%;
     height: 100%;
 }
 
-.items{
+.items {
     display: flex;
     padding: 10px 30px;
     margin-top: 30px;
     border-radius: 5px;
-    border: 1.5px solid #00a2ff ;
+    border: 1.5px solid #00a2ff;
 }
 
-.smenus{
+.smenus {
     color: #00a2ff;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-.head{
+.head {
     margin-bottom: 20px;
 }
 
-.form-main{
+.form-main {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.form-main{
+.form-main {
     padding-top: 20px;
 }
-.form-main > form{
+
+.form-main>form {
     width: 300px;
 
 }
 
-.profile-pic{
+.profile-pic {
     width: 200px;
     display: flex;
     justify-content: center;
     padding-left: 15px;
 }
 
-.profile-pic>img{
+.profile-pic>img {
     max-width: 200px;
     aspect-ratio: 1/1;
     object-fit: cover;
-    
+
 }
 
-.doctors-display{
+.doctors-display {
     display: flex;
     margin-top: 50px;
 }
 
-.btn3{
+.btn3 {
     padding: 2.5px 5px;
     position: relative;
     bottom: 21px;
 }
 
-li{
+li {
     margin-bottom: 21px;
 }
 
 
-.move-form{
+.move-form {
     position: relative;
     top: 20px;
 }
 
-.move{
+.move {
     position: relative;
     margin-bottom: -6px;
 }
 
-.patient-acc{
+.patient-acc {
     display: flex;
 }
 
-.pic{
+.pic {
     max-height: 150px;
 }
 
-.doc-img>img{
+.doc-img>img {
     max-height: 200px;
 }
 
-.patHead{
+.patHead {
     margin-top: 40px;
     margin-left: 85px;
     font-size: 32px;
 
 }
 
-.docs-detail{
+.docs-detail {
     display: flex;
     font-weight: bold;
     align-items: left;
@@ -329,11 +330,11 @@ li{
     margin-left: 40px;
 }
 
-.doctor-details{
+.doctor-details {
     display: flex;
 }
 
-.hos-details{
+.hos-details {
     display: flex;
     justify-content: top;
     margin-top: 50px;
@@ -345,24 +346,26 @@ li{
     margin-left: 50px;
     font-size: 35px;
 }
-.hos-name{
+
+.hos-name {
     margin-top: 40px;
     font-weight: bold;
 }
-.hos-address{
+
+.hos-address {
     font-size: 20px;
 }
 
-.doc-img{
+.doc-img {
     margin-top: 40px;
     margin-left: 30px;
 }
 
-.container{
+.container {
     width: 300px;
 }
 
-.container > img{
+.container>img {
     max-width: 300px;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -370,86 +373,87 @@ li{
     margin-left: 75px;
 }
 
-.doc-main{
+.doc-main {
     display: flex;
 }
 
-.hospital-card{
+.hospital-card {
     display: flex;
 }
 
-.doc-main{
+.doc-main {
     display: flex;
 }
 
-.container1{
+.container1 {
     width: 300px;
     margin: 0px;
 }
 
 
 
-.container1>img{
+.container1>img {
     max-width: 300px;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
 
-.card2{
+.card2 {
     display: flex;
 }
 
-.d1{
+.d1 {
     font-weight: 700;
 }
 
-.d1 ,.d1{
+.d1,
+.d1 {
     margin-top: 30px;
 }
 
-.hospital-main{
+.hospital-main {
     display: flex;
-    
+
 }
 
-.main-hospital{
+.main-hospital {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
 
-.hos-card{
+.hos-card {
     display: flex;
     max-height: 400px;
     align-items: center;
 }
 
-.hos-card{
+.hos-card {
     margin-left: 40px;
 }
 
-.form{
+.form {
     margin-left: 40px;
 }
 
-.move{
+.move {
     margin-top: 60px;
 }
 
 
-.container1 > img{
+.container1>img {
     border-radius: 50%;
 }
 
-.qr{
+.qr {
     max-height: 200px;
     width: 200px;
     object-fit: cover;
     padding-right: 20px;
 }
 
-.head{
+.head {
     text-align: center;
     margin-top: 30px;
     margin-bottom: -5px;
@@ -458,36 +462,63 @@ li{
     color: #00a2ff;
 }
 
-.qr-sec{
+.qr-sec {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.move1{
+.move1 {
     position: relative;
     top: 90px;
 }
 
-.dis{
+.dis {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.moveup{
+.moveup {
     position: relative;
     top: 100px;
 }
 
-.online{
+.online {
     position: relative;
     top: 20px;
     margin-top: 20px;
 }
 
+.div {
+    position: relative;
+    top: 100px;
+}
 
+.driver-popover {
+    width: 1000px;
+    height: 1000px;
+}
 
+@media (max-width:600px) {
+    .menus{
+        display: none;
+    }
+    .nav-bar{
+        display: flex;
+        padding-left: 50%;
+    }
+    #book{
+        position: relative;
+        top: 85px;
+        background-color: rgb(240, 240, 240);
+    }
+    .img-section{
+        z-index: -1;
 
-
-
+        
+    }
+    .logo-section{
+        margin-bottom: 100px;
+    }
+}

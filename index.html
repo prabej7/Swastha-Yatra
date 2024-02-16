@@ -5,69 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./public/css/main.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
 </head>
 
 <body>
-    <div class="nav-bar">
-        <div class="logo">
-            <h1>Swastha Yatra</h1>
-        </div>
-        <div class="menus">
-            <a href="">Hospitals</a>
-            <a href="">Doctors</a>
-            <a href="">Billing</a>
-            <a href="">My Account</a>
-        </div>
-    </div>
-    <!-- <div class="patient-acc">
-        <%data.forEach(element=>{%>
-            <a href="/hospitals/<%=element.username%>" class="cards">
-                <div class="container1">
-                    <img src="/uploads/<%= element.img %>" />
-                </div>
-                <div class="hos-details">
-                    <p class="d1">
-                        <%= element.username %>
-                    </p>
-                    <p class="d2">Birta, Birgunj</p>
-                </div>
-            </a>
-        <%})%>
-    </div> -->
+    <button id="btn">Take a tour</button>
+    <script>
+        let btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            const driver = window.driver.js.driver;
+            const driverObj = driver({
+  showProgress: true,
+  showButtons: ['next', 'previous'],
+  steps: [
+    { element: '#btn', popover: { title: 'Animated Tour Example', description: 'Here is the code example showing animated tour. Let\'s walk you through it.', side: "left", align: 'start' }},
+    { element: 'code .line:nth-child(1)', popover: { title: 'Import the Library', description: 'It works the same in vanilla JavaScript as well as frameworks.', side: "bottom", align: 'start' }},
+    { element: 'code .line:nth-child(2)', popover: { title: 'Importing CSS', description: 'Import the CSS which gives you the default styling for popover and overlay.', side: "bottom", align: 'start' }},
+    { element: 'code .line:nth-child(4) span:nth-child(7)', popover: { title: 'Create Driver', description: 'Simply call the driver function to create a driver.js instance', side: "left", align: 'start' }},
+    { element: 'code .line:nth-child(16)', popover: { title: 'Start Tour', description: 'Call the drive method to start the tour and your tour will be started.', side: "top", align: 'start' }},
+  ]
+});
 
-    <!-- <div class="hospital-main">
-        <%data.forEach(element=>{%>
-                <div class="container1">
-                    <img src="/uploads/<%= element.img %>" />
-                </div>
-                <div class="hos-details">
-                    <p class="d1">
-                        <%= element.username %>
-                    </p>
-                    <p class="d2"><%= element.address %></p>
-                </div>
-                <%})%>
-    </div> -->
-
-    <div class="main-hospital">
-        <div class="hos-card">
-            <div class="container1">
-                <img src="./public/img/Artboard 1.png" />
-            </div>
-            <div class="details">
-                <div class="name">
-                    <h1>Narayani Hospital</h1>
-                </div>
-                <div class="address">
-                    <p>Birta, Birgunj</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+driverObj.drive();
+        });
+    </script>
 </body>
 
 </html>
