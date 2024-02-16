@@ -267,6 +267,7 @@ app.post('/preBilling', (req, res) => {
 });
 
 app.get('/billing', async (req, res) => {
+    
     let isAuth;
     const data = await User.findByUsername(hospitalName);
     let eSewaUrl = `"eSewa_id:":"${data.eSewaNo}","name":"${data.eSewa}"`;
@@ -284,6 +285,7 @@ let patId;
 
 app.post('/billing', uploads.single('receipt'), async (req, res) => {
     const { name, phone, age } = req.body;
+    
     if (req.body.type === 'Offline') {
         const newPatients = new Patinet({
             name: req.body.name,
