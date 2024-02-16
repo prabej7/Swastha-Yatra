@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+<input type="hidden" id="check" value="<%= data.id %>" />
     <div class="hero-section">
         <div class="side-bar">
             <%if(data.type!=='patient'){%>
@@ -64,7 +65,7 @@
                 <input type="file" name="profile" />                
                 <button type="submit" class="btn">Upload</button>
             </form>
-
+            <div class="head" style="font-size: 24px;margin-left: 25px; font-weight: 400;">Setup Payment Options</div>
             <form class="form" action="/updatePay" method="post">
                 <%if(data.type==='doctor'){%>
                     <input type="text" name="type" placeholder="Specialization" class="input" value="<%= data.spec %>" />
@@ -81,7 +82,13 @@
         
     </div>
 
-
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let userId = document.getElementById('check');
+        const socket = io();
+        socket.emit('user-on',userId.value);
+        socket.emit('off',userId.value);
+    </script>
 
 
     <%- include('partials/footer') -%>

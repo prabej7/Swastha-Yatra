@@ -1,0 +1,51 @@
+<%- include('partials/header') -%>
+<div class="head">Available Doctors</div>
+<div class="main-hospital">
+    <%doctors.forEach((element)=>{%>
+    <div href="/hospitals/<%= element.username %>" class="hos-card">
+        <div class="container1 move">
+            <img src="/uploads/<%= element.img %>" />
+        </div>
+        <div class="details form">
+            <div class="name">
+                <h1><%= element.username %></h1>
+                <p><%= element.spec %></p>
+            </div>
+            <div class="address">
+                <p><%= element.attend %></p>
+            </div>
+            <div>
+                <form action="/preBilling" method="post">
+                    <button class="btn" type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <%})%>
+
+    <%other.forEach((element)=>{%>
+        <div href="/hospitals/<%= element.username %>" class="hos-card">
+            <div class="container1 move">
+                <img src="/uploads/<%= element.img %>" />
+            </div>
+            <div class="details form">
+                <div class="name">
+                    <h1><%= element.username %></h1>
+                    <p><%= element.spec %></p>
+                </div>
+                <div class="address">
+                    <p><%= element.available %></p>
+                </div>
+                <div>
+                    <form action="/preBilling" method="post">
+                        <button class="btn" type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <%})%>
+</div>
+
+<%- include('partials/footer') -%>

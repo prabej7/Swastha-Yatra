@@ -72,7 +72,8 @@ const userSchema = mongoose.Schema({
     eSewaNo: String,
     spec: String,
     address: String,
-    NMC: String
+    NMC: String,
+    available:String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -378,14 +379,25 @@ app.post('/chat', (req, res) => {
     res.redirect('/chat');
 });
 let users = {};
+let current;
 io.on('connection', socket => {
     socket.on('user-joined', (name) => {
         users[socket.id] = name;
         socket.broadcast.emit('new-user', `${name} joined the chat !`);
     });
 
+    socket.on('user-on',async(data)=>{
+        current = data;
+        let da = await User.updateOne({_id:data},{$set:{available:'Online'}});
+    });
+
     socket.on('receive', (data) => {
         socket.broadcast.emit('send', { userName: data.user, msg: data.msg });
+    });
+
+    socket.on('disconnect',async (data) => {
+        let sa = await User.updateOne({_id:current},{$set:{available:'Offline'}});
+        console.log(sa);
     });
 
     socket.on('disconnect', (data) => {
@@ -396,6 +408,12 @@ io.on('connection', socket => {
 
 app.get('/chat', (req, res) => {
     res.render('chat', { name: newUser });
+});
+
+app.get('/emergency',async(req,res)=>{
+    const data = await Doctor.find({attend:'Online'});
+    const dat1 = await User.find({available:'Online',type:'doctor'});
+    res.render('emergency',{doctors:data,other:dat1});
 });
 
 app.get('/logout', function (req, res, next) {
