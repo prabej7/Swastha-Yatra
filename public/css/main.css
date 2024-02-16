@@ -435,6 +435,8 @@ li {
 
 .form {
     margin-left: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 .move {
@@ -500,25 +502,16 @@ li {
     height: 1000px;
 }
 
-@media (max-width:600px) {
-    .menus{
-        display: none;
-    }
-    .nav-bar{
-        display: flex;
-        padding-left: 50%;
-    }
-    #book{
-        position: relative;
-        top: 85px;
-        background-color: rgb(240, 240, 240);
-    }
-    .img-section{
-        z-index: -1;
-
-        
-    }
-    .logo-section{
-        margin-bottom: 100px;
-    }
+.logo-img{
+    width: 70px;
+    display: flex;
+    align-items: center;
 }
+
+.logo-img> img{
+    max-width: 70px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
