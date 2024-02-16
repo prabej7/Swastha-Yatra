@@ -70,7 +70,9 @@ const userSchema = mongoose.Schema({
     img: String,
     eSewa: String,
     eSewaNo: String,
-    spec: String
+    spec: String,
+    address: String,
+    NMC: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -92,7 +94,7 @@ app.post('/register', async (req, res) => {
             console.log(err);
         } else {
             passport.authenticate('local')(req, res, async () => {
-                await User.updateOne({ _id: req.user._id }, { $set: { type: type, img: 'img.png' } });
+                await User.updateOne({ _id: req.user._id }, { $set: { type: req.body.type, img: 'img.png',address:req.body.add } });
 
                 if (req.body.type === 'patient') {
                     res.redirect('/patientsAccount');
@@ -198,6 +200,9 @@ app.get('/hospitals', async (req, res) => {
 
 app.get('/myaccount', async (req, res) => {
     if (req.isAuthenticated()) {
+        if(req.user.doctors===null){
+            console.log('Null');
+        }
         res.render('myaccount', { data: req.user, doctors: req.user.doctors });
     } else {
         res.redirect('/login');
@@ -206,7 +211,7 @@ app.get('/myaccount', async (req, res) => {
 
 app.post('/updatePofile', uploads.single('profile'), async (req, res) => {
     let profilePic = req.user.img;
-    if (req.file) {
+    if(req.file){
         const data = await User.updateOne({ _id: req.user._id }, { $set: { img: req.file.filename } });
         if (profilePic !== 'img.png') {
             fs.unlink('./public/uploads/' + profilePic, (err) => {
@@ -214,27 +219,20 @@ app.post('/updatePofile', uploads.single('profile'), async (req, res) => {
                     console.log(err);
                 } else {
                     console.log('File Deleted Successfully!');
+                    res.redirect('/myaccount');
                 }
             });
+        }else if (profilePic === 'img.png'){
+            const data = await User.updateOne({ _id: req.user._id }, { $set: { spec:req.body.type } });
             res.redirect('/myaccount');
-        }
-    }else if(!req.file && req.body.type){
-        const data = await User.updateOne({ _id: req.user._id }, { $set: { spec:req.body.type } });
-        if (profilePic !== 'img.png') {
-            fs.unlink('./public/uploads/' + profilePic, (err) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('File Deleted Successfully!');
-                }
-            });
-            res.redirect('/myaccount');
+    }else{
+        res.redirect('/myaccount');
     }
-    res.redirect('/myaccount');
+
 }});
 
 app.post('/updatePay', async (req, res) => {
-    const data = await User.updateOne({ _id: req.user._id }, { $set: { eSewa: req.body.eSewa, eSewaNo: req.body.eSewaNo } });
+    const data = await User.updateOne({ _id: req.user._id }, { $set: { eSewa: req.body.eSewa, eSewaNo: req.body.eSewaNo, spec:req.body.type } });
     console.log(data);
     res.redirect('/myaccount');
 });
@@ -261,6 +259,10 @@ app.get('/hospitals/:text', async (req, res) => {
 
 app.post('/preBilling', (req, res) => {
     doctorName = req.body.doctor;
+    if(hospitalName===undefined){
+        hospitalName = req.body.doctor;
+    }
+
     res.redirect('/billing');
 });
 
@@ -320,6 +322,14 @@ app.post('/billing', uploads.single('receipt'), async (req, res) => {
             console.log(hospitalName);
             data = await User.findByUsername(hospitalName);
             let doctor = data;
+            req.user.doctors.push(doctor);
+            await req.user.save();
+            res.redirect('/patientsAccount');
+        }else if(doctorName!=='1'){
+            console.log(hospitalName);
+            data = await User.find({ username: hospitalName });
+            console.log(data);
+            let doctor = data[0];
             req.user.doctors.push(doctor);
             await req.user.save();
             res.redirect('/patientsAccount');

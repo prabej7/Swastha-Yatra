@@ -1,19 +1,21 @@
 <%- include('partials/header') -%>
     <div class="main-hospital">
         <%data.forEach((element)=>{%>
+ 
         <div href="/hospitals/<%= element.username %>" class="hos-card">
             <div class="container1 move">
                 <img src="/uploads/<%= element.img %>" />
             </div>
             <div class="details form">
                 <div class="name">
-                    <h1><%= element.username %></h1>
+                    <h1><%= element.username %></h1><p><%= element.type %></p>
+                    <p><%= element.add %></p>
                 </div>
                 <div class="address">
                     <p><%= element.attend %></p>
                 </div>
                 <div>
-                    <div class="moveup">
+                    <div >
                         <form action="/preBilling" method="post">
                         <button class="btn" type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
                     </form>

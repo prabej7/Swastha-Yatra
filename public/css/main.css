@@ -3,9 +3,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    /* background-color: rgb(245, 245, 245); */
-}
+
 
 .nav-bar {
     height: 13vh;
@@ -279,6 +277,8 @@ button {
 .doctors-display {
     display: flex;
     margin-top: 50px;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
 .btn3 {
@@ -417,9 +417,8 @@ li {
 }
 
 .main-hospital {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 
@@ -513,5 +512,25 @@ li {
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.btn{
+    transition: 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.btn:hover{
+    background-color: transparent;
+    border: 1px solid #00a2ff;
+    color: #00a2ff;
+}
+
+.hos-card{
+    margin-top: 50px;
+}
+
+.btn-move{
+    position: relative;
+    right: 20px;
 }
 

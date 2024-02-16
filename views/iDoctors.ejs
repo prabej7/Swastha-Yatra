@@ -9,12 +9,13 @@
         <div class="details form">
             <div class="name">
                 <h1><%= element.username %></h1>
+                <p><%= element.spec %></p>
             </div>
             <div class="address">
                 <p><%= element.attend %></p>
             </div>
             <div>
-                <form class="form" action="/preBilling" method="post">
+                <form action="/preBilling" method="post">
                     <button class="btn" type="submit" value="<%= element.username %>" name="doctor">Appoint</button>
                 </form>
             </div>
