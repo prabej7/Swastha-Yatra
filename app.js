@@ -263,7 +263,6 @@ app.post('/preBilling', (req, res) => {
     if(hospitalName===undefined){
         hospitalName = req.body.doctor;
     }
-
     res.redirect('/billing');
 });
 
@@ -298,6 +297,7 @@ app.post('/billing', uploads.single('receipt'), async (req, res) => {
         const saved = await newPatients.save();
         patId = saved._id;
         const hospital = await User.findByUsername(hospitalName);
+        console.log(hospital);
         hospital.patients.push(saved);
         hospital.save();
     } else {

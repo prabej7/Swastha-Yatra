@@ -534,3 +534,13 @@ li {
     right: 20px;
 }
 
+.btn2{
+    border: 1px solid #00a2ff;
+    color: #00a2ff;
+}
+
+.btn2:hover{
+    background-color: #00a2ff;
+    color: white;
+}
+
