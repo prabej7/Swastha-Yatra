@@ -60,7 +60,7 @@
             <div class="profile-pic">
                 <img src="/uploads/<%= data.img %>" alt="Profile Picture" />
             </div>
-            <form action="/updatePofile" method="post" enctype="multipart/form-data">
+            <form class="form" action="/updatePofile" method="post" enctype="multipart/form-data">
                 <input type="file" name="profile" />
                 <%if(data.type==='doctor'){%>
                     <input type="text" name="type" placeholder="Specialization" class="input" value="<%= data.spec %>" />
@@ -69,7 +69,7 @@
                 <button type="submit" class="btn">Upload</button>
             </form>
 
-            <form action="/updatePay" method="post">
+            <form class="form" action="/updatePay" method="post">
                 <input type="text" name="eSewaNo" class="input" placeholder="eSewa Number"
                     value="<%= data.eSewaNo %>" />
                 <input type="text" name="eSewa" class="input" placeholder="Registerd Name" value="<%= data.eSewa %>" />

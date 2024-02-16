@@ -228,6 +228,7 @@ app.post('/updatePofile', uploads.single('profile'), async (req, res) => {
                     console.log('File Deleted Successfully!');
                 }
             });
+            res.redirect('/myaccount');
     }
 
     res.redirect('/myaccount');

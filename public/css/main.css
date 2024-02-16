@@ -150,7 +150,11 @@ footer{
     margin-top: 40px;
 }
 
-form{
+.maveup{
+    margin-bottom: 40px;
+}
+
+.form{
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -471,6 +475,16 @@ li{
     gap: 30px;
 }
 
+.moveup{
+    position: relative;
+    top: 100px;
+}
+
+.online{
+    position: relative;
+    top: 20px;
+    margin-top: 20px;
+}
 
 
 
