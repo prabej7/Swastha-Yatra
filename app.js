@@ -224,7 +224,7 @@ app.post('/updatePofile', uploads.single('profile'), async (req, res) => {
                 }
             });
         }else if (profilePic === 'img.png'){
-            const data = await User.updateOne({ _id: req.user._id }, { $set: { spec:req.body.type } });
+            const data = await User.updateOne({ _id: req.user._id }, { $set: { spec:req.body.type} });
             res.redirect('/myaccount');
     }else{
         res.redirect('/myaccount');
@@ -233,7 +233,7 @@ app.post('/updatePofile', uploads.single('profile'), async (req, res) => {
 }});
 
 app.post('/updatePay', async (req, res) => {
-    const data = await User.updateOne({ _id: req.user._id }, { $set: { eSewa: req.body.eSewa, eSewaNo: req.body.eSewaNo, spec:req.body.type } });
+    const data = await User.updateOne({ _id: req.user._id }, { $set: { eSewa: req.body.eSewa, eSewaNo: req.body.eSewaNo, spec:req.body.type,NMC:req.body.nmcNo  } });
     console.log(data);
     res.redirect('/myaccount');
 });

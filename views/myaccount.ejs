@@ -69,6 +69,7 @@
             <form class="form" action="/updatePay" method="post">
                 <%if(data.type==='doctor'){%>
                     <input type="text" name="type" placeholder="Specialization" class="input" value="<%= data.spec %>" />
+                    <input type="text" name="nmcNo" placeholder="NMC Number" class="input" value="<%= data.NMC %>" />
                 <%}%>
                 <input type="text" name="eSewaNo" class="input" placeholder="eSewa Number"
                     value="<%= data.eSewaNo %>" />
